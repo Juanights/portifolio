@@ -178,6 +178,10 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+# Inicializar session_state para navegação
+if "page" not in st.session_state:
+    st.session_state.page = "Início"
+
 # Sidebar - Navegação Única e Profissional
 with st.sidebar:
     st.markdown("## Portfólio")
@@ -187,8 +191,12 @@ with st.sidebar:
     page = st.radio(
         "Navegação",
         ["Início", "Sobre", "Projetos", "Storytelling", "Contato"],
-        label_visibility="collapsed"
+        label_visibility="collapsed",
+        index=["Início", "Sobre", "Projetos", "Storytelling", "Contato"].index(st.session_state.page)
     )
+    
+    # Atualizar session_state quando o radio muda
+    st.session_state.page = page
     
     st.markdown("---")
     st.markdown("""
@@ -244,17 +252,21 @@ def show_home():
     st.markdown("---")
     
     st.markdown("## Explore")
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4 = st.columns(4)
     with col1:
-        if st.button("Projetos", use_container_width=True):
+        if st.button("Projetos", use_container_width=True, key="btn_explore_projetos"):
             st.session_state.page = "Projetos"
             st.rerun()
     with col2:
-        if st.button("Sobre Mim", use_container_width=True):
+        if st.button("Sobre Mim", use_container_width=True, key="btn_explore_sobre"):
             st.session_state.page = "Sobre"
             st.rerun()
     with col3:
-        if st.button("Contato", use_container_width=True):
+        if st.button("Storytelling", use_container_width=True, key="btn_explore_storytelling"):
+            st.session_state.page = "Storytelling"
+            st.rerun()
+    with col4:
+        if st.button("Contato", use_container_width=True, key="btn_explore_contato"):
             st.session_state.page = "Contato"
             st.rerun()
 
