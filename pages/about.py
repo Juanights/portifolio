@@ -12,11 +12,17 @@ def show():
     
     with st.expander("🎓 Formação", expanded=True):
         st.markdown("""
-        - **Graduação:** Análise de Dados / Ciência de Dados
-        - **Instituição:** [Sua Universidade]
-        - **Período:** [Ano de Início] - [Ano de Conclusão]
-        - **Destaque:** GPA 3.8/4.0 | Bolsista de Excelência
+        - **Graduação:** Analise e Desenvolvimento de Sistemas
+        - **Instituição:** UNICID
+        - **Período:** 2024 - 2025
+                    
+
+        - **Pós-Graduação:** Ciência de Dados e Inteligência Artificial
+        - **Instituição:** UNINTER
+        - **Período:** 2025 - Conclusão Prevista 06/2026
         """)
+
+        
     
     with st.expander("📜 Certificações"):
         st.markdown("""
@@ -38,38 +44,21 @@ def show():
     with col1:
         st.markdown("""
         #### Linguagens de Programação
-        - **Python** ⭐⭐⭐⭐⭐
-        - **SQL** ⭐⭐⭐⭐
-        - **R** ⭐⭐⭐
-        - **JavaScript** ⭐⭐
+        - **Python** ⭐⭐⭐
+        - **SQL** ⭐⭐
+        - **PowerBi** ⭐⭐
+        - **Excel/Sheets** ⭐⭐⭐⭐
         """)
     
     with col2:
         st.markdown("""
         #### Ferramentas e Bibliotecas
-        - **Pandas** ⭐⭐⭐⭐⭐
-        - **NumPy** ⭐⭐⭐⭐⭐
-        - **Scikit-learn** ⭐⭐⭐⭐
-        - **Plotly / Matplotlib** ⭐⭐⭐⭐⭐
+        - **Pandas** ⭐⭐
+        - **NumPy** ⭐⭐
+        - **Scikit-learn** ⭐⭐
+        - **Plotly / Matplotlib** ⭐⭐
         """)
     
-    col3, col4 = st.columns(2)
-    
-    with col3:
-        st.markdown("""
-        #### Bancos de Dados
-        - **MySQL** ⭐⭐⭐⭐
-        - **PostgreSQL** ⭐⭐⭐
-        - **MongoDB** ⭐⭐⭐
-        """)
-    
-    with col4:
-        st.markdown("""
-        #### Ferramentas de BI
-        - **Power BI** ⭐⭐⭐⭐
-        - **Tableau** ⭐⭐⭐
-        - **Google Data Studio** ⭐⭐⭐⭐
-        """)
     
     st.markdown("""
     ---
@@ -81,9 +70,9 @@ def show():
     skills = {
         "Comunicação": 90,
         "Resolução de Problemas": 85,
-        "Trabalho em Equipe": 88,
-        "Pensamento Crítico": 92,
-        "Criatividade": 87,
+        "Trabalho em Equipe": 90,
+        "Pensamento Crítico": 85,
+        "Criatividade": 95,
         "Gestão de Projetos": 80
     }
     

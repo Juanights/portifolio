@@ -1,7 +1,7 @@
 import streamlit as st
 
 def show():
-    st.title("🏠 Bem-vindo ao Meu Portfólio de Dados!")
+    st.title("🏠 Sejam Bem-vindo ao Meu Portfólio de Dados!")
     
     st.markdown("""
     ---
@@ -14,7 +14,7 @@ def show():
         st.markdown("""
         ### Olá! 👋
         
-        Meu nome é **[Seu Nome]** e sou um **Analista e Cientista de Dados** apaixonado por transformar dados em insights valiosos.
+        Meu nome é **Juan Uchise** e sou um **Analista e Cientista de Dados** apaixonado por transformar dados em insights valiosos.
         
         Neste portfólio, você encontrará uma seleção de meus projetos mais interessantes, demonstrando minhas habilidades em:
         
