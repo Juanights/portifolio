@@ -3,7 +3,7 @@ import os
 
 # Configuração da página
 st.set_page_config(
-    page_title="Portfólio de Dados",
+    page_title="Seja bem vindo ao meu portfólio de Dados!",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -38,7 +38,7 @@ st.markdown("""
 
 # Navegação lateral
 with st.sidebar:
-    st.markdown("### 👤 Seu Nome")
+    st.markdown("### 👤 Juan Uchise")
     st.markdown("**Analista de Dados | Cientista de Dados**")
     
     page = st.radio(
