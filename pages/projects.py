@@ -10,22 +10,45 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+# Tema customizado para Plotly
+PLOTLY_THEME = {
+    "template": "plotly_white",
+    "colors": ["#0F766E", "#14B8A6", "#2DD4BF", "#99F6E4", "#CCFBF1"],
+    "font": {"family": "Arial, sans-serif", "size": 12, "color": "#1F2937"},
+    "paper_bgcolor": "#FFFFFF",
+    "plot_bgcolor": "#F8FAFB"
+}
+
+def apply_plotly_theme(fig):
+    """Aplicar tema customizado aos gráficos Plotly"""
+    fig.update_layout(
+        template="plotly_white",
+        font=dict(family="Arial, sans-serif", size=12, color="#1F2937"),
+        paper_bgcolor="#FFFFFF",
+        plot_bgcolor="#F8FAFB",
+        hovermode="x unified",
+        margin=dict(l=0, r=0, t=40, b=0)
+    )
+    return fig
+
 def show():
-    st.title("📊 Meus Projetos")
-    
     st.markdown("""
-    ---
-    """)
+    <div style="text-align: center; padding: 2rem 0 1rem 0;">
+        <h1>Meus Projetos</h1>
+        <p style="font-size: 1.05rem; color: #6B7280;">Explorando dados e criando soluções</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("---")
     
     # Seleção de projeto
     project = st.selectbox(
-        "Selecione um projeto para explorar:",
-        ["Análise Exploratória (EDA)", "Machine Learning", "Dashboard de BI"]
+        "Selecione um projeto:",
+        ["Análise Exploratória (EDA)", "Machine Learning", "Dashboard de BI"],
+        label_visibility="collapsed"
     )
     
-    st.markdown("""
-    ---
-    """)
+    st.markdown("---")
     
     if project == "Análise Exploratória (EDA)":
         show_eda_project()
@@ -35,20 +58,22 @@ def show():
         show_dashboard_project()
 
 def show_eda_project():
-    st.markdown("### 📊 Análise Exploratória de Dados - Dataset Iris")
-    
     st.markdown("""
-    **Objetivo:** Explorar o famoso dataset Iris, compreendendo a distribuição das espécies 
-    e as características das flores.
-    """)
+    <div class="card">
+        <div class="card-header">📊 Análise Exploratória - Dataset Iris</div>
+        <div class="card-text">
+            Exploração detalhada do famoso dataset Iris, compreendendo a distribuição das espécies 
+            e as características das flores através de visualizações interativas.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Carregar dados
-    from sklearn.datasets import load_iris
     iris = load_iris()
     df = pd.DataFrame(iris.data, columns=iris.feature_names)
     df['Species'] = iris.target_names[iris.target]
     
-    # Abas para diferentes análises
+    # Abas
     tab1, tab2, tab3, tab4 = st.tabs(["📈 Visão Geral", "🔍 Distribuições", "📊 Correlações", "📋 Dados"])
     
     with tab1:
@@ -67,33 +92,52 @@ def show_eda_project():
         st.markdown("#### Distribuições das Features")
         
         feature = st.selectbox(
-            "Selecione uma feature para visualizar:",
-            iris.feature_names
+            "Selecione uma feature:",
+            iris.feature_names,
+            key="eda_feature"
         )
         
-        fig = px.histogram(df, x=feature, color='Species', nbins=30, 
-                          title=f"Distribuição de {feature}")
+        fig = px.histogram(
+            df, 
+            x=feature, 
+            color='Species', 
+            nbins=30,
+            title=f"Distribuição de {feature}",
+            color_discrete_sequence=["#0F766E", "#14B8A6", "#2DD4BF"]
+        )
+        fig = apply_plotly_theme(fig)
         st.plotly_chart(fig, use_container_width=True)
         
         # Gráfico de dispersão
         st.markdown("#### Gráfico de Dispersão")
-        x_axis = st.selectbox("Eixo X:", iris.feature_names, key="x_scatter")
-        y_axis = st.selectbox("Eixo Y:", iris.feature_names, key="y_scatter")
+        col1, col2 = st.columns(2)
         
-        fig_scatter = px.scatter(df, x=x_axis, y=y_axis, color='Species',
-                                title=f"{x_axis} vs {y_axis}",
-                                size_max=8)
+        with col1:
+            x_axis = st.selectbox("Eixo X:", iris.feature_names, key="x_scatter")
+        with col2:
+            y_axis = st.selectbox("Eixo Y:", iris.feature_names, key="y_scatter")
+        
+        fig_scatter = px.scatter(
+            df, 
+            x=x_axis, 
+            y=y_axis, 
+            color='Species',
+            title=f"{x_axis} vs {y_axis}",
+            size_max=8,
+            color_discrete_sequence=["#0F766E", "#14B8A6", "#2DD4BF"]
+        )
+        fig_scatter = apply_plotly_theme(fig_scatter)
         st.plotly_chart(fig_scatter, use_container_width=True)
     
     with tab3:
         st.markdown("#### Matriz de Correlação")
         
-        # Calcular correlação
         corr_matrix = df.drop('Species', axis=1).corr()
         
-        # Heatmap
         fig, ax = plt.subplots(figsize=(8, 6))
-        sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', center=0, ax=ax)
+        sns.heatmap(corr_matrix, annot=True, cmap='RdYlGn', center=0, ax=ax, 
+                   cbar_kws={'label': 'Correlação'}, fmt='.2f')
+        ax.set_title("Matriz de Correlação", fontsize=14, fontweight='bold', pad=20)
         st.pyplot(fig)
     
     with tab4:
@@ -103,19 +147,25 @@ def show_eda_project():
         with col1:
             n_rows = st.slider("Número de linhas:", 5, 150, 10)
         with col2:
-            species_filter = st.multiselect("Filtrar por espécie:", df['Species'].unique(), 
-                                           default=df['Species'].unique())
+            species_filter = st.multiselect(
+                "Filtrar por espécie:", 
+                df['Species'].unique(), 
+                default=df['Species'].unique()
+            )
         
         filtered_df = df[df['Species'].isin(species_filter)].head(n_rows)
         st.dataframe(filtered_df, use_container_width=True)
 
 def show_ml_project():
-    st.markdown("### 🤖 Projeto de Machine Learning - Classificação de Iris")
-    
     st.markdown("""
-    **Objetivo:** Treinar um modelo de Machine Learning para classificar espécies de flores 
-    com base em suas características.
-    """)
+    <div class="card">
+        <div class="card-header">🤖 Machine Learning - Classificação de Iris</div>
+        <div class="card-text">
+            Modelo treinado para classificar espécies de flores com base em suas características. 
+            Teste o modelo com seus próprios dados!
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Carregar dados
     iris = load_iris()
@@ -152,10 +202,12 @@ def show_ml_project():
         cm = confusion_matrix(y_test, y_pred)
         
         fig, ax = plt.subplots(figsize=(8, 6))
-        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax,
-                   xticklabels=iris.target_names, yticklabels=iris.target_names)
-        ax.set_ylabel('Verdadeiro')
-        ax.set_xlabel('Predito')
+        sns.heatmap(cm, annot=True, fmt='d', cmap='RdYlGn', ax=ax,
+                   xticklabels=iris.target_names, yticklabels=iris.target_names,
+                   cbar_kws={'label': 'Contagem'})
+        ax.set_ylabel('Verdadeiro', fontweight='bold')
+        ax.set_xlabel('Predito', fontweight='bold')
+        ax.set_title('Matriz de Confusão', fontsize=14, fontweight='bold', pad=20)
         st.pyplot(fig)
     
     with tab2:
@@ -192,9 +244,15 @@ def show_ml_project():
             'Probabilidade': probabilities
         })
         
-        fig = px.bar(prob_df, x='Espécie', y='Probabilidade', 
-                    title="Distribuição de Probabilidades",
-                    color='Probabilidade', color_continuous_scale='Viridis')
+        fig = px.bar(
+            prob_df, 
+            x='Espécie', 
+            y='Probabilidade',
+            title="Distribuição de Probabilidades",
+            color='Probabilidade',
+            color_continuous_scale=['#CCFBF1', '#14B8A6', '#0F766E']
+        )
+        fig = apply_plotly_theme(fig)
         st.plotly_chart(fig, use_container_width=True)
     
     with tab3:
@@ -205,18 +263,28 @@ def show_ml_project():
             'Importância': model.feature_importances_
         }).sort_values('Importância', ascending=False)
         
-        fig = px.bar(feature_importance, x='Importância', y='Feature', 
-                    orientation='h', title="Importância das Features",
-                    color='Importância', color_continuous_scale='Viridis')
+        fig = px.bar(
+            feature_importance, 
+            x='Importância', 
+            y='Feature',
+            orientation='h',
+            title="Importância das Features",
+            color='Importância',
+            color_continuous_scale=['#CCFBF1', '#14B8A6', '#0F766E']
+        )
+        fig = apply_plotly_theme(fig)
         st.plotly_chart(fig, use_container_width=True)
 
 def show_dashboard_project():
-    st.markdown("### 📈 Dashboard de BI - Análise de Vendas")
-    
     st.markdown("""
-    **Objetivo:** Criar um dashboard interativo que monitora indicadores de vendas, 
-    permitindo análise por período, região e produto.
-    """)
+    <div class="card">
+        <div class="card-header">📈 Dashboard de BI - Análise de Vendas</div>
+        <div class="card-text">
+            Dashboard interativo que monitora indicadores de vendas, permitindo análise por período, 
+            região e produto com filtros dinâmicos.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Gerar dados fictícios
     np.random.seed(42)
@@ -289,33 +357,56 @@ def show_dashboard_project():
         vendas_por_mes = df_filtered.groupby('Mês')['Vendas'].sum().reset_index()
         vendas_por_mes['Mês'] = vendas_por_mes['Mês'].astype(str)
         
-        fig = px.line(vendas_por_mes, x='Mês', y='Vendas', 
-                     title="Evolução de Vendas por Mês",
-                     markers=True)
+        fig = px.line(
+            vendas_por_mes, 
+            x='Mês', 
+            y='Vendas',
+            title="Evolução de Vendas por Mês",
+            markers=True,
+            line_shape="spline"
+        )
+        fig.update_traces(line=dict(color='#0F766E', width=3))
+        fig = apply_plotly_theme(fig)
         st.plotly_chart(fig, use_container_width=True)
     
     with tab2:
         vendas_por_regiao = df_filtered.groupby('Região')['Vendas'].sum().sort_values(ascending=False)
         
-        fig = px.bar(vendas_por_regiao, 
-                    title="Vendas por Região",
-                    labels={'value': 'Vendas (R$)', 'index': 'Região'},
-                    color=vendas_por_regiao.values,
-                    color_continuous_scale='Viridis')
+        fig = px.bar(
+            x=vendas_por_regiao.values,
+            y=vendas_por_regiao.index,
+            orientation='h',
+            title="Vendas por Região",
+            color=vendas_por_regiao.values,
+            color_continuous_scale=['#CCFBF1', '#14B8A6', '#0F766E'],
+            labels={'x': 'Vendas (R$)', 'y': 'Região'}
+        )
+        fig = apply_plotly_theme(fig)
         st.plotly_chart(fig, use_container_width=True)
     
     with tab3:
         vendas_por_produto = df_filtered.groupby('Produto')['Vendas'].sum().sort_values(ascending=False)
         
-        fig = px.pie(values=vendas_por_produto.values, 
-                    names=vendas_por_produto.index,
-                    title="Distribuição de Vendas por Produto")
+        fig = px.pie(
+            values=vendas_por_produto.values,
+            names=vendas_por_produto.index,
+            title="Distribuição de Vendas por Produto",
+            color_discrete_sequence=["#0F766E", "#14B8A6", "#2DD4BF", "#99F6E4"]
+        )
+        fig = apply_plotly_theme(fig)
         st.plotly_chart(fig, use_container_width=True)
     
     with tab4:
         vendas_regiao_produto = df_filtered.groupby(['Região', 'Produto'])['Vendas'].sum().reset_index()
         
-        fig = px.bar(vendas_regiao_produto, x='Região', y='Vendas', color='Produto',
-                    title="Vendas por Região e Produto",
-                    barmode='group')
+        fig = px.bar(
+            vendas_regiao_produto,
+            x='Região',
+            y='Vendas',
+            color='Produto',
+            title="Vendas por Região e Produto",
+            barmode='group',
+            color_discrete_sequence=["#0F766E", "#14B8A6", "#2DD4BF", "#99F6E4"]
+        )
+        fig = apply_plotly_theme(fig)
         st.plotly_chart(fig, use_container_width=True)
