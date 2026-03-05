@@ -10,51 +10,53 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 st.set_page_config(
     page_title="Portfólio | Analista de Dados",
-    page_icon="📊",
+    page_icon="🚀",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# CSS Executivo - Tema Dark Executive
+# CSS Cyber-Executive - Dark Purple & Neon Green
 st.markdown("""
     <style>
-    /* Paleta Dark Executive */
+    /* Paleta Cyber-Executive */
     * {
         margin: 0;
         padding: 0;
     }
     
     body {
-        background-color: #0f172a;
-        color: #f1f5f9;
+        background-color: #0F0718;
+        color: #E0E7FF;
     }
     
     /* Main Container */
     .main {
-        background-color: #0f172a;
+        background-color: #0F0718;
         padding: 2rem;
     }
     
     /* Tipografia */
     h1 {
-        color: #f1f5f9;
+        color: #E0E7FF;
         font-weight: 700;
         font-size: 2.5rem;
         margin-bottom: 0.5rem;
         letter-spacing: -0.02em;
+        text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
     }
     
     h2 {
-        color: #e0e7ff;
+        color: #10B981;
         font-weight: 600;
         font-size: 1.875rem;
         margin-top: 2rem;
         margin-bottom: 1rem;
         letter-spacing: -0.01em;
+        text-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
     }
     
     h3 {
-        color: #93c5fd;
+        color: #10B981;
         font-weight: 600;
         font-size: 1.25rem;
         margin-top: 1.5rem;
@@ -62,118 +64,137 @@ st.markdown("""
     }
     
     p, li {
-        color: #cbd5e1;
+        color: #CBD5E1;
         line-height: 1.7;
         font-size: 0.95rem;
     }
     
-    /* Botões */
+    /* Botões Neon */
     .stButton > button {
-        background-color: #1e40af;
-        color: #f1f5f9;
-        border: 1px solid #3b82f6;
-        border-radius: 6px;
+        background-color: #1A0F2E;
+        color: #10B981;
+        border: 2px solid #10B981;
+        border-radius: 4px;
         font-weight: 600;
         font-size: 0.9rem;
         padding: 0.7rem 1.5rem;
         transition: all 0.3s ease;
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
     }
     
     .stButton > button:hover {
-        background-color: #1e3a8a;
-        border-color: #60a5fa;
-        box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        background-color: #10B981;
+        color: #0F0718;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+        transform: translateY(-2px);
     }
     
-    /* Info Box */
-    .info-box {
-        background: linear-gradient(135deg, #1a2f4b 0%, #0f1f35 100%);
-        border-left: 3px solid #3b82f6;
-        border-radius: 8px;
+    /* HUD Card */
+    .hud-card {
+        background: linear-gradient(135deg, #1A0F2E 0%, #0F0718 100%);
+        border: 1px solid #10B981;
+        border-radius: 4px;
         padding: 1.5rem;
         margin: 1.5rem 0;
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.2), inset 0 0 15px rgba(16, 185, 129, 0.05);
+        position: relative;
+    }
+    
+    .hud-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #10B981, transparent);
     }
     
     /* Divider */
     hr {
         border: none;
         height: 1px;
-        background: linear-gradient(to right, transparent, #334155, transparent);
+        background: linear-gradient(90deg, transparent, #10B981, transparent);
         margin: 2rem 0;
-    }
-    
-    /* Métrica */
-    [data-testid="metric-container"] {
-        background: linear-gradient(135deg, #1a2f4b 0%, #0f1f35 100%);
-        border: 1px solid #334155;
-        border-radius: 8px;
-        padding: 1.5rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Links */
-    a {
-        color: #60a5fa;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s ease;
-    }
-    
-    a:hover {
-        color: #93c5fd;
-        text-decoration: underline;
     }
     
     /* Sidebar */
     [data-testid="stSidebar"] {
-        background-color: #0f172a;
-        border-right: 1px solid #334155;
+        background-color: #0F0718;
+        border-right: 1px solid #10B981;
     }
     
-    [data-testid="stSidebar"] h1 {
-        font-size: 1.25rem;
-        color: #f1f5f9;
+    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+        color: #E0E7FF;
     }
     
-    /* Tabs */
-    [data-testid="stTabs"] [role="tablist"] {
-        border-bottom: 1px solid #334155;
-    }
-    
-    [data-testid="stTabs"] [role="tab"] {
-        color: #94a3b8;
+    /* Radio Buttons */
+    [data-testid="stRadio"] label {
+        color: #CBD5E1;
         font-weight: 500;
-        border-bottom: 2px solid transparent;
     }
     
-    [data-testid="stTabs"] [role="tab"][aria-selected="true"] {
-        color: #60a5fa;
-        border-bottom-color: #3b82f6;
+    [data-testid="stRadio"] [role="radio"] {
+        accent-color: #10B981;
     }
     
-    /* Expander */
+    /* Metric */
+    .stMetric {
+        background: linear-gradient(135deg, #1A0F2E 0%, #0F0718 100%);
+        border: 1px solid #10B981;
+        border-radius: 4px;
+        padding: 1rem;
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+    }
+    
+    [data-testid="stMetricLabel"] {
+        color: #CBD5E1;
+    }
+    
+    [data-testid="stMetricValue"] {
+        color: #10B981;
+        text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+    
+    /* Expandable */
     [data-testid="stExpander"] {
-        border: 1px solid #334155;
-        border-radius: 6px;
-        background-color: #1a2332;
+        border: 1px solid #10B981;
+        border-radius: 4px;
+        background-color: #1A0F2E;
     }
     
-    /* Dataframe */
-    [data-testid="stDataFrame"] {
-        background-color: #1a2332;
+    [data-testid="stExpander"] summary {
+        color: #10B981;
+        font-weight: 600;
     }
     
-    /* Selectbox e inputs */
-    [data-testid="stSelectbox"] > div > div {
-        background-color: #1a2332;
-        border-color: #334155;
-    }
-    
+    /* Input Fields */
     [data-testid="stTextInput"] input,
     [data-testid="stTextArea"] textarea {
-        background-color: #1a2332;
-        color: #f1f5f9;
-        border-color: #334155;
+        background-color: #1A0F2E;
+        color: #E0E7FF;
+        border-color: #10B981;
+        border: 1px solid #10B981;
+    }
+    
+    [data-testid="stTextInput"] input:focus,
+    [data-testid="stTextArea"] textarea:focus {
+        border-color: #10B981;
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+    
+    /* Icon-like elements */
+    .icon-neon {
+        color: #10B981;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+    
+    /* Highlight */
+    .highlight-neon {
+        color: #10B981;
+        font-weight: 600;
+        text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
     }
     </style>
     """, unsafe_allow_html=True)
@@ -182,9 +203,9 @@ st.markdown("""
 if "page" not in st.session_state:
     st.session_state.page = "Início"
 
-# Sidebar - Navegação Única e Profissional
+# Sidebar - Navegação Cyber-Executive
 with st.sidebar:
-    st.markdown("## Portfólio")
+    st.markdown("## ⚡ Portfólio")
     st.markdown("*Analista de Dados | Ciência de Dados*")
     st.markdown("---")
     
@@ -201,11 +222,11 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("""
     **Desenvolvido com:**  
-    Python • Streamlit • Plotly
+    🐍 Python • ⚡ Streamlit • 📊 Plotly
     """)
 
 def show_home():
-    st.markdown("# Analista de Dados & Cientista de Dados")
+    st.markdown("# <span class='icon-neon'>◆</span> Analista de Dados & Cientista de Dados", unsafe_allow_html=True)
     st.markdown("Transformando dados em estratégia de negócio")
     st.markdown("---")
     
@@ -215,21 +236,20 @@ def show_home():
         st.markdown("""
         ### Visão Geral
         
-        Profissional especializado em transformar dados complexos em insights acionáveis. 
-        Com experiência em análise exploratória, modelagem preditiva e visualização estratégica, 
-        entrego soluções que impulsionam decisões baseadas em dados.
+        Profissional especializado em transformar dados complexos em insights acionáveis. Com experiência em análise exploratória, modelagem preditiva e visualização estratégica, entrego soluções que impulsionam decisões baseadas em dados.
         
         **Competências Principais:**
-        - Análise Exploratória de Dados (EDA) e Data Profiling
-        - Modelagem Preditiva e Machine Learning
-        - Business Intelligence e Visualização Executiva
-        - Engenharia de Dados e Automação
+        
+        • Análise Exploratória de Dados (EDA) e Data Profiling  
+        • Modelagem Preditiva e Machine Learning  
+        • Business Intelligence e Visualização Executiva  
+        • Engenharia de Dados e Automação
         """)
     
     with col2:
         st.markdown("""
-        <div class="info-box">
-            <h3>Perfil</h3>
+        <div class='hud-card'>
+            <h4 style='color: #10B981; margin-bottom: 1rem;'>⬥ Perfil</h4>
             <p><strong>Formação:</strong> Análise de Dados / Ciência de Dados</p>
             <p><strong>Localização:</strong> Brasil</p>
             <p><strong>Experiência:</strong> Iniciante em Dados</p>
@@ -240,416 +260,292 @@ def show_home():
     st.markdown("---")
     
     st.markdown("## Destaques")
-    
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric("Projetos", "5+", "2 em desenvolvimento")
+        st.metric("◆ Projetos", "5+", "2 em desenvolvimento")
     with col2:
-        st.metric("Linguagens", "Python, SQL", "R")
+        st.metric("◆ Linguagens", "Python, SQL", "R")
     with col3:
-        st.metric("Ferramentas", "Streamlit, Power BI", "Tableau, Jupyter")
+        st.metric("◆ Ferramentas", "Streamlit, Power BI", "Tableau, Jupyter")
     
     st.markdown("---")
     
     st.markdown("## Explore")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        if st.button("Projetos", use_container_width=True, key="btn_explore_projetos"):
+        if st.button("▶ Projetos", use_container_width=True, key="btn_explore_projetos"):
             st.session_state.page = "Projetos"
             st.rerun()
     with col2:
-        if st.button("Sobre Mim", use_container_width=True, key="btn_explore_sobre"):
+        if st.button("▶ Sobre Mim", use_container_width=True, key="btn_explore_sobre"):
             st.session_state.page = "Sobre"
             st.rerun()
     with col3:
-        if st.button("Storytelling", use_container_width=True, key="btn_explore_storytelling"):
+        if st.button("▶ Storytelling", use_container_width=True, key="btn_explore_storytelling"):
             st.session_state.page = "Storytelling"
             st.rerun()
     with col4:
-        if st.button("Contato", use_container_width=True, key="btn_explore_contato"):
+        if st.button("▶ Contato", use_container_width=True, key="btn_explore_contato"):
             st.session_state.page = "Contato"
             st.rerun()
 
 def show_about():
-    st.markdown("# Sobre Mim")
+    st.markdown("# <span class='icon-neon'>◆</span> Sobre Mim", unsafe_allow_html=True)
     st.markdown("Trajetória profissional e competências técnicas")
     st.markdown("---")
     
-    st.markdown("## Formação Acadêmica")
+    st.markdown("""
+    <div class='hud-card'>
+        <h3 style='color: #10B981;'>⬥ Formação Acadêmica</h3>
+        <p><strong>Graduação:</strong> Análise de Dados / Ciência de Dados</p>
+        <p><strong>Instituição:</strong> [Sua Universidade]</p>
+        <p><strong>Período:</strong> [Ano de Início] - [Ano de Conclusão]</p>
+        <p><strong>Destaque:</strong> GPA 3.8/4.0 | Bolsista de Excelência</p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    with st.expander("Graduação", expanded=True):
-        st.markdown("""
-        **Curso:** Análise de Dados / Ciência de Dados  
-        **Instituição:** [Sua Universidade]  
-        **Período:** [Ano de Início] - [Ano de Conclusão]  
-        **Destaque:** GPA 3.8/4.0 | Bolsista de Excelência
-        """)
+    st.markdown("""
+    <div class='hud-card'>
+        <h3 style='color: #10B981;'>⬥ Certificações</h3>
+    </div>
+    """, unsafe_allow_html=True)
     
-    with st.expander("Certificações"):
+    with st.expander("📜 Certificações Profissionais"):
         st.markdown("""
-        - Google Analytics Certification
-        - Python for Data Analysis (DataCamp)
-        - Machine Learning Specialization (Coursera)
-        - SQL for Data Analysis (Udemy)
+        • **Google Data Analytics Professional Certificate** - Google  
+        • **Python for Data Science** - Coursera  
+        • **Advanced SQL for Data Analysis** - DataCamp
         """)
     
     st.markdown("---")
     
     st.markdown("## Competências Técnicas")
-    
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("### Linguagens de Programação")
         st.markdown("""
-        - **Python** — Avançado
-        - **SQL** — Avançado
-        - **R** — Intermediário
-        - **JavaScript** — Básico
-        """)
+        <div class='hud-card'>
+            <h4 style='color: #10B981;'>Linguagens de Programação</h4>
+            • <span class='highlight-neon'>Python</span> — Avançado  
+            • <span class='highlight-neon'>SQL</span> — Avançado  
+            • <span class='highlight-neon'>R</span> — Intermediário  
+            • <span class='highlight-neon'>JavaScript</span> — Básico
+        </div>
+        """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown("### Bibliotecas & Frameworks")
         st.markdown("""
-        - **Pandas** — Avançado
-        - **NumPy** — Avançado
-        - **Scikit-learn** — Avançado
-        - **Plotly** — Avançado
-        """)
+        <div class='hud-card'>
+            <h4 style='color: #10B981;'>Bibliotecas & Frameworks</h4>
+            • <span class='highlight-neon'>Pandas</span> — Avançado  
+            • <span class='highlight-neon'>NumPy</span> — Avançado  
+            • <span class='highlight-neon'>Scikit-learn</span> — Avançado  
+            • <span class='highlight-neon'>Plotly</span> — Avançado
+        </div>
+        """, unsafe_allow_html=True)
     
     col3, col4 = st.columns(2)
     
     with col3:
-        st.markdown("### Bancos de Dados")
         st.markdown("""
-        - **MySQL** — Avançado
-        - **PostgreSQL** — Intermediário
-        - **MongoDB** — Intermediário
-        - **SQLite** — Avançado
-        """)
+        <div class='hud-card'>
+            <h4 style='color: #10B981;'>Bancos de Dados</h4>
+            • <span class='highlight-neon'>MySQL</span> — Avançado  
+            • <span class='highlight-neon'>PostgreSQL</span> — Intermediário  
+            • <span class='highlight-neon'>MongoDB</span> — Básico
+        </div>
+        """, unsafe_allow_html=True)
     
     with col4:
-        st.markdown("### Ferramentas de BI")
         st.markdown("""
-        - **Power BI** — Avançado
-        - **Tableau** — Intermediário
-        - **Google Data Studio** — Avançado
-        - **Streamlit** — Avançado
-        """)
+        <div class='hud-card'>
+            <h4 style='color: #10B981;'>Ferramentas de BI</h4>
+            • <span class='highlight-neon'>Power BI</span> — Avançado  
+            • <span class='highlight-neon'>Tableau</span> — Intermediário  
+            • <span class='highlight-neon'>Streamlit</span> — Avançado
+        </div>
+        """, unsafe_allow_html=True)
 
 def show_projects():
-    st.markdown("# Projetos")
+    st.markdown("# <span class='icon-neon'>◆</span> Projetos", unsafe_allow_html=True)
     st.markdown("Análise técnica de dados e modelagem preditiva")
     st.markdown("---")
     
+    st.markdown("## Selecione um projeto:")
     project = st.selectbox(
-        "Selecione um projeto:",
-        ["Análise Exploratória (Iris)", "Machine Learning (Classificação)", "Dashboard de Vendas"]
+        "Projetos Disponíveis",
+        ["Análise Exploratória (Iris)", "Machine Learning", "Dashboard de Vendas"],
+        label_visibility="collapsed"
     )
     
     if project == "Análise Exploratória (Iris)":
-        show_eda()
-    elif project == "Machine Learning (Classificação)":
-        show_ml()
-    else:
-        show_dashboard()
-
-def show_eda():
-    st.markdown("## Análise Exploratória - Dataset Iris")
-    st.markdown("Exploração detalhada do famoso dataset Iris com visualizações interativas.")
+        st.markdown("""
+        <div class='hud-card'>
+            <h3 style='color: #10B981;'>⬥ Análise Exploratória - Dataset Iris</h3>
+            <p>Análise detalhada do dataset Iris com visualizações interativas.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        tab1, tab2, tab3, tab4 = st.tabs(["Visão Geral", "Distribuições", "Correlações", "Dados"])
+        
+        with tab1:
+            st.markdown("### Estatísticas Descritivas")
+            iris_data = load_iris()
+            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
+            st.dataframe(df.describe(), use_container_width=True)
+        
+        with tab2:
+            st.markdown("### Distribuições de Variáveis")
+            iris_data = load_iris()
+            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                fig = px.histogram(df, x="sepal length (cm)", nbins=30, title="Sepal Length")
+                fig.update_layout(
+                    template='plotly_dark',
+                    plot_bgcolor='#1A0F2E',
+                    paper_bgcolor='#0F0718',
+                    font=dict(color='#E0E7FF'),
+                    title_font_color='#10B981'
+                )
+                st.plotly_chart(fig, use_container_width=True)
+            
+            with col2:
+                fig = px.histogram(df, x="petal length (cm)", nbins=30, title="Petal Length")
+                fig.update_layout(
+                    template='plotly_dark',
+                    plot_bgcolor='#1A0F2E',
+                    paper_bgcolor='#0F0718',
+                    font=dict(color='#E0E7FF'),
+                    title_font_color='#10B981'
+                )
+                st.plotly_chart(fig, use_container_width=True)
+        
+        with tab3:
+            st.markdown("### Matriz de Correlações")
+            iris_data = load_iris()
+            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
+            
+            fig = px.imshow(df.corr(), color_continuous_scale='Greens', title="Correlation Matrix")
+            fig.update_layout(
+                template='plotly_dark',
+                plot_bgcolor='#1A0F2E',
+                paper_bgcolor='#0F0718',
+                font=dict(color='#E0E7FF'),
+                title_font_color='#10B981'
+            )
+            st.plotly_chart(fig, use_container_width=True)
+        
+        with tab4:
+            st.markdown("### Dataset Completo")
+            iris_data = load_iris()
+            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
+            st.dataframe(df, use_container_width=True)
     
-    iris = load_iris()
-    df = pd.DataFrame(iris.data, columns=iris.feature_names)
-    df['species'] = iris.target_names[iris.target]
-    
-    tab1, tab2, tab3, tab4 = st.tabs(["Visão Geral", "Distribuições", "Correlações", "Dados"])
-    
-    with tab1:
-        st.markdown("### Estatísticas Descritivas")
-        st.dataframe(df.describe(), use_container_width=True)
+    elif project == "Machine Learning":
+        st.markdown("""
+        <div class='hud-card'>
+            <h3 style='color: #10B981;'>⬥ Modelo de Classificação - Iris</h3>
+            <p>Random Forest para classificação de espécies de flores.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        iris_data = load_iris()
+        X = iris_data.data
+        y = iris_data.target
+        
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        
+        model = RandomForestClassifier(n_estimators=100, random_state=42)
+        model.fit(X_train, y_train)
+        
+        accuracy = model.score(X_test, y_test)
         
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.metric("Total de Registros", len(df))
+            st.metric("◆ Acurácia", f"{accuracy:.2%}")
         with col2:
-            st.metric("Número de Features", len(iris.feature_names))
+            st.metric("◆ Amostras Teste", len(X_test))
         with col3:
-            st.metric("Espécies Únicas", df['species'].nunique())
-    
-    with tab2:
-        st.markdown("### Distribuições de Features")
-        feature = st.selectbox("Selecione uma feature:", iris.feature_names)
+            st.metric("◆ Features", X.shape[1])
         
-        fig = go.Figure()
-        for species in iris.target_names:
-            data = df[df['species'] == species][feature]
-            fig.add_trace(go.Histogram(
-                x=data,
-                name=species,
-                opacity=0.7,
-                marker_color=['#1e40af', '#3b82f6', '#60a5fa'][list(iris.target_names).index(species)]
-            ))
+        st.markdown("---")
         
+        st.markdown("### Importância das Features")
+        feature_importance = pd.DataFrame({
+            'Feature': iris_data.feature_names,
+            'Importance': model.feature_importances_
+        }).sort_values('Importance', ascending=False)
+        
+        fig = px.bar(feature_importance, x='Importance', y='Feature', orientation='h', title="Feature Importance")
         fig.update_layout(
-            title=f"Distribuição de {feature}",
-            xaxis_title=feature,
-            yaxis_title="Frequência",
-            barmode='overlay',
             template='plotly_dark',
-            hovermode='x unified',
-            plot_bgcolor='#1a2332',
-            paper_bgcolor='#0f172a'
+            plot_bgcolor='#1A0F2E',
+            paper_bgcolor='#0F0718',
+            font=dict(color='#E0E7FF'),
+            title_font_color='#10B981',
+            marker_color='#10B981'
         )
         st.plotly_chart(fig, use_container_width=True)
     
-    with tab3:
-        st.markdown("### Matriz de Correlação")
-        corr_matrix = df.drop('species', axis=1).corr()
+    elif project == "Dashboard de Vendas":
+        st.markdown("""
+        <div class='hud-card'>
+            <h3 style='color: #10B981;'>⬥ Dashboard de Vendas</h3>
+            <p>Painel executivo com métricas de vendas e tendências.</p>
+        </div>
+        """, unsafe_allow_html=True)
         
-        fig = go.Figure(data=go.Heatmap(
-            z=corr_matrix.values,
-            x=corr_matrix.columns,
-            y=corr_matrix.columns,
-            colorscale='Blues',
-            zmid=0
-        ))
-        
-        fig.update_layout(
-            title="Correlação entre Features",
-            template='plotly_dark',
-            height=500,
-            plot_bgcolor='#1a2332',
-            paper_bgcolor='#0f172a'
-        )
-        st.plotly_chart(fig, use_container_width=True)
-    
-    with tab4:
-        st.markdown("### Dataset Completo")
-        st.dataframe(df, use_container_width=True)
-
-def show_ml():
-    st.markdown("## Machine Learning - Classificação")
-    st.markdown("Modelo preditivo para classificação de espécies de Iris.")
-    
-    iris = load_iris()
-    X = iris.data
-    y = iris.target
-    
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
-    model.fit(X_train, y_train)
-    
-    y_pred = model.predict(X_test)
-    accuracy = model.score(X_test, y_test)
-    
-    tab1, tab2, tab3 = st.tabs(["Desempenho", "Matriz de Confusão", "Previsão"])
-    
-    with tab1:
-        st.markdown("### Métricas de Desempenho")
+        np.random.seed(42)
+        dates = pd.date_range('2024-01-01', periods=90, freq='D')
+        sales_data = pd.DataFrame({
+            'Data': dates,
+            'Vendas': np.random.randint(5000, 20000, 90),
+            'Clientes': np.random.randint(50, 200, 90)
+        })
         
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.metric("Acurácia", f"{accuracy:.2%}")
+            st.metric("◆ Total de Vendas", f"R$ {sales_data['Vendas'].sum():,.0f}")
         with col2:
-            st.metric("Modelo", "Random Forest")
+            st.metric("◆ Média Diária", f"R$ {sales_data['Vendas'].mean():,.0f}")
         with col3:
-            st.metric("Estimadores", "100")
+            st.metric("◆ Total de Clientes", sales_data['Clientes'].sum())
         
-        st.markdown("### Relatório de Classificação")
-        report = classification_report(y_test, y_pred, target_names=iris.target_names, output_dict=True)
-        report_df = pd.DataFrame(report).transpose()
-        st.dataframe(report_df, use_container_width=True)
-    
-    with tab2:
-        st.markdown("### Matriz de Confusão")
+        st.markdown("---")
         
-        cm = confusion_matrix(y_test, y_pred)
-        
-        fig = go.Figure(data=go.Heatmap(
-            z=cm,
-            x=iris.target_names,
-            y=iris.target_names,
-            colorscale='Blues',
-            text=cm,
-            texttemplate='%{text}',
-            textfont={"size": 12}
-        ))
-        
-        fig.update_layout(
-            title="Matriz de Confusão",
-            xaxis_title="Predito",
-            yaxis_title="Real",
-            template='plotly_dark',
-            height=500,
-            plot_bgcolor='#1a2332',
-            paper_bgcolor='#0f172a'
-        )
-        st.plotly_chart(fig, use_container_width=True)
-    
-    with tab3:
-        st.markdown("### Fazer Previsão")
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            sepal_length = st.slider("Sepal Length (cm)", 4.0, 8.0, 5.5)
-            sepal_width = st.slider("Sepal Width (cm)", 2.0, 4.5, 3.0)
-        
-        with col2:
-            petal_length = st.slider("Petal Length (cm)", 1.0, 7.0, 3.5)
-            petal_width = st.slider("Petal Width (cm)", 0.1, 2.5, 1.0)
-        
-        input_data = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
-        prediction = model.predict(input_data)[0]
-        probability = model.predict_proba(input_data)[0]
-        
-        st.markdown("### Resultado")
-        st.success(f"**Espécie Prevista:** {iris.target_names[prediction]}")
-        
-        col1, col2, col3 = st.columns(3)
-        for i, species in enumerate(iris.target_names):
-            with [col1, col2, col3][i]:
-                st.metric(species, f"{probability[i]:.2%}")
-
-def show_dashboard():
-    st.markdown("## Dashboard de Vendas")
-    st.markdown("Análise de performance de vendas com KPIs e tendências.")
-    
-    np.random.seed(42)
-    dates = pd.date_range('2024-01-01', periods=90, freq='D')
-    data = {
-        'Data': dates,
-        'Vendas': np.random.randint(5000, 15000, 90),
-        'Região': np.random.choice(['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul'], 90),
-        'Categoria': np.random.choice(['Eletrônicos', 'Vestuário', 'Alimentos', 'Serviços'], 90)
-    }
-    df_sales = pd.DataFrame(data)
-    
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.metric("Total de Vendas", f"R$ {df_sales['Vendas'].sum():,.0f}")
-    with col2:
-        st.metric("Média Diária", f"R$ {df_sales['Vendas'].mean():,.0f}")
-    with col3:
-        st.metric("Máximo", f"R$ {df_sales['Vendas'].max():,.0f}")
-    with col4:
-        st.metric("Mínimo", f"R$ {df_sales['Vendas'].min():,.0f}")
-    
-    st.markdown("---")
-    
-    tab1, tab2, tab3 = st.tabs(["Tendência", "Por Região", "Por Categoria"])
-    
-    with tab1:
         fig = go.Figure()
         fig.add_trace(go.Scatter(
-            x=df_sales['Data'],
-            y=df_sales['Vendas'],
-            mode='lines',
+            x=sales_data['Data'],
+            y=sales_data['Vendas'],
+            mode='lines+markers',
             name='Vendas',
-            line=dict(color='#3b82f6', width=2)
+            line=dict(color='#10B981', width=3),
+            marker=dict(size=6)
         ))
         fig.update_layout(
-            title="Tendência de Vendas",
+            title="Tendência de Vendas (90 dias)",
             xaxis_title="Data",
             yaxis_title="Vendas (R$)",
             template='plotly_dark',
-            hovermode='x unified',
-            plot_bgcolor='#1a2332',
-            paper_bgcolor='#0f172a'
+            plot_bgcolor='#1A0F2E',
+            paper_bgcolor='#0F0718',
+            font=dict(color='#E0E7FF'),
+            title_font_color='#10B981',
+            hovermode='x unified'
         )
         st.plotly_chart(fig, use_container_width=True)
-    
-    with tab2:
-        sales_by_region = df_sales.groupby('Região')['Vendas'].sum().sort_values(ascending=False)
-        fig = go.Figure(data=[
-            go.Bar(x=sales_by_region.index, y=sales_by_region.values, marker_color='#1e40af')
-        ])
-        fig.update_layout(
-            title="Vendas por Região",
-            xaxis_title="Região",
-            yaxis_title="Vendas (R$)",
-            template='plotly_dark',
-            plot_bgcolor='#1a2332',
-            paper_bgcolor='#0f172a'
-        )
-        st.plotly_chart(fig, use_container_width=True)
-    
-    with tab3:
-        sales_by_category = df_sales.groupby('Categoria')['Vendas'].sum().sort_values(ascending=False)
-        fig = go.Figure(data=[
-            go.Pie(labels=sales_by_category.index, values=sales_by_category.values, marker_colors=['#1e40af', '#3b82f6', '#60a5fa', '#93c5fd'])
-        ])
-        fig.update_layout(title="Distribuição por Categoria", template='plotly_dark', paper_bgcolor='#0f172a')
-        st.plotly_chart(fig, use_container_width=True)
-
-def show_contact():
-    st.markdown("# Contato")
-    st.markdown("Conecte-se comigo para oportunidades e colaborações")
-    st.markdown("---")
-    
-    st.markdown("## Canais de Contato")
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.markdown("### LinkedIn")
-        st.markdown("Acompanhe minha jornada profissional e conecte-se comigo.\n\n[Visite meu perfil](https://linkedin.com/in/seu-perfil)")
-    
-    with col2:
-        st.markdown("### GitHub")
-        st.markdown("Explore meus projetos e contribuições.\n\n[Visite meu GitHub](https://github.com/seu-usuario)")
-    
-    with col3:
-        st.markdown("### Email")
-        st.markdown("Envie um email diretamente.\n\n[seu.email@gmail.com](mailto:seu.email@gmail.com)")
-    
-    st.markdown("---")
-    
-    st.markdown("## Formulário de Contato")
-    
-    st.markdown("""
-    <div class="info-box">
-        <p>Preencha o formulário abaixo. Responderei em 24-48 horas.</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    with st.form("contact_form", clear_on_submit=True):
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            nome = st.text_input("Nome Completo *", placeholder="João Silva")
-        with col2:
-            email = st.text_input("Email *", placeholder="joao@example.com")
-        
-        assunto = st.selectbox(
-            "Assunto *",
-            ["Oportunidade de Trabalho", "Colaboração em Projeto", "Dúvida Técnica", 
-             "Feedback sobre Portfólio", "Outro"]
-        )
-        
-        mensagem = st.text_area(
-            "Mensagem *",
-            placeholder="Escreva sua mensagem aqui...",
-            height=150
-        )
-        
-        submitted = st.form_submit_button("Enviar", use_container_width=True)
-        
-        if submitted:
-            if nome and email and mensagem:
-                st.success("Obrigado pela mensagem. Responderei em breve.")
-            else:
-                st.error("Por favor, preencha todos os campos obrigatórios.")
 
 def show_storytelling():
-    st.markdown("# Análise de Impacto de Negócio")
+    st.markdown("# <span class='icon-neon'>◆</span> Análise de Impacto de Negócio", unsafe_allow_html=True)
     st.markdown("Uma narrativa de dados que transforma números em decisões")
     st.markdown("---")
     
-    # Seção 1: O Problema
-    st.markdown("""\n    <div style="background: linear-gradient(135deg, #1a2f4b 0%, #0f1f35 100%); border-left: 4px solid #3b82f6; border-radius: 8px; padding: 2rem; margin: 2rem 0;">
-        <h3 style="color: #60a5fa; margin-bottom: 1rem;">1. O Problema</h3>
-        <p style="color: #cbd5e1; line-height: 1.8; font-size: 1rem;">Uma empresa de varejo online enfrenta uma queda consistente na taxa de conversão de vendas nos últimos 6 meses. O time de negócios não consegue identificar se o problema está na qualidade do tráfego, no comportamento do cliente ou em fatores sazonais.</p>
+    st.markdown("""
+    <div class='hud-card'>
+        <h3 style='color: #10B981;'>⬥ 1. O Problema</h3>
+        <p>Uma empresa de varejo online enfrenta uma queda consistente na taxa de conversão de vendas nos últimos 6 meses. O time de negócios não consegue identificar se o problema está na qualidade do tráfego, no comportamento do cliente ou em fatores sazonais.</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -669,7 +565,7 @@ def show_storytelling():
         y=conversion_data['Taxa_Conversao'],
         mode='lines+markers',
         name='Taxa de Conversão (%)',
-        line=dict(color='#ef4444', width=3),
+        line=dict(color='#10B981', width=3),
         marker=dict(size=6)
     ))
     fig1.update_layout(
@@ -677,16 +573,19 @@ def show_storytelling():
         xaxis_title="Data",
         yaxis_title="Taxa de Conversão (%)",
         template='plotly_dark',
-        plot_bgcolor='#1a2332',
-        paper_bgcolor='#0f172a',
+        plot_bgcolor='#1A0F2E',
+        paper_bgcolor='#0F0718',
+        font=dict(color='#E0E7FF'),
+        title_font_color='#10B981',
         hovermode='x unified',
         height=400
     )
     st.plotly_chart(fig1, use_container_width=True)
     
-    st.markdown("""\n    <div style="background: linear-gradient(135deg, #1a2f4b 0%, #0f1f35 100%); border-left: 4px solid #f59e0b; border-radius: 8px; padding: 2rem; margin: 2rem 0;">
-        <h3 style="color: #fbbf24; margin-bottom: 1rem;">2. A Exploração</h3>
-        <p style="color: #cbd5e1; line-height: 1.8; font-size: 1rem;">Investigamos os dados em profundidade. Segmentamos por fonte de tráfego, dispositivo e período do dia para identificar padrões.</p>
+    st.markdown("""
+    <div class='hud-card'>
+        <h3 style='color: #10B981;'>⬥ 2. A Exploração</h3>
+        <p>Investigamos os dados em profundidade. Segmentamos por fonte de tráfego, dispositivo e período do dia para identificar padrões.</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -699,13 +598,15 @@ def show_storytelling():
             'Taxa': [3.2, 2.8, 1.5, 4.1]
         })
         fig2 = go.Figure(data=[
-            go.Bar(x=traffic_data['Fonte'], y=traffic_data['Taxa'], marker_color=['#3b82f6', '#ef4444', '#f59e0b', '#10b981'])
+            go.Bar(x=traffic_data['Fonte'], y=traffic_data['Taxa'], marker_color='#10B981')
         ])
         fig2.update_layout(
             title="Por Fonte de Tráfego",
             template='plotly_dark',
-            plot_bgcolor='#1a2332',
-            paper_bgcolor='#0f172a',
+            plot_bgcolor='#1A0F2E',
+            paper_bgcolor='#0F0718',
+            font=dict(color='#E0E7FF'),
+            title_font_color='#10B981',
             height=350
         )
         st.plotly_chart(fig2, use_container_width=True)
@@ -717,20 +618,23 @@ def show_storytelling():
             'Taxa': [3.8, 2.1, 2.9]
         })
         fig3 = go.Figure(data=[
-            go.Bar(x=device_data['Dispositivo'], y=device_data['Taxa'], marker_color=['#3b82f6', '#ef4444', '#f59e0b'])
+            go.Bar(x=device_data['Dispositivo'], y=device_data['Taxa'], marker_color='#10B981')
         ])
         fig3.update_layout(
             title="Por Dispositivo",
             template='plotly_dark',
-            plot_bgcolor='#1a2332',
-            paper_bgcolor='#0f172a',
+            plot_bgcolor='#1A0F2E',
+            paper_bgcolor='#0F0718',
+            font=dict(color='#E0E7FF'),
+            title_font_color='#10B981',
             height=350
         )
         st.plotly_chart(fig3, use_container_width=True)
     
-    st.markdown("""\n    <div style="background: linear-gradient(135deg, #1a2f4b 0%, #0f1f35 100%); border-left: 4px solid #10b981; border-radius: 8px; padding: 2rem; margin: 2rem 0;">
-        <h3 style="color: #6ee7b7; margin-bottom: 1rem;">3. O Insight Crítico</h3>
-        <p style="color: #cbd5e1; line-height: 1.8; font-size: 1rem;"><strong>Descoberta Principal:</strong> A taxa de conversão em dispositivos móveis caiu 45% em 6 meses, enquanto desktop permaneceu estável. Isso sugere um problema de experiência do usuário (UX) específico para mobile.</p>
+    st.markdown("""
+    <div class='hud-card'>
+        <h3 style='color: #10B981;'>⬥ 3. O Insight Crítico</h3>
+        <p><strong>Descoberta Principal:</strong> A taxa de conversão em dispositivos móveis caiu 45% em 6 meses, enquanto desktop permaneceu estável. Isso sugere um problema de experiência do usuário (UX) específico para mobile.</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -747,31 +651,34 @@ def show_storytelling():
         y=mobile_data['Desktop'],
         mode='lines',
         name='Desktop',
-        line=dict(color='#3b82f6', width=3)
+        line=dict(color='#10B981', width=3)
     ))
     fig4.add_trace(go.Scatter(
         x=mobile_data['Data'],
         y=mobile_data['Mobile'],
         mode='lines',
         name='Mobile',
-        line=dict(color='#ef4444', width=3, dash='dash')
+        line=dict(color='#10B981', width=3, dash='dash')
     ))
     fig4.update_layout(
         title="Divergência de Performance: Desktop vs Mobile",
         xaxis_title="Data",
         yaxis_title="Taxa de Conversão (%)",
         template='plotly_dark',
-        plot_bgcolor='#1a2332',
-        paper_bgcolor='#0f172a',
+        plot_bgcolor='#1A0F2E',
+        paper_bgcolor='#0F0718',
+        font=dict(color='#E0E7FF'),
+        title_font_color='#10B981',
         hovermode='x unified',
         height=400
     )
     st.plotly_chart(fig4, use_container_width=True)
     
-    st.markdown("""\n    <div style="background: linear-gradient(135deg, #1a2f4b 0%, #0f1f35 100%); border-left: 4px solid #8b5cf6; border-radius: 8px; padding: 2rem; margin: 2rem 0;">
-        <h3 style="color: #c4b5fd; margin-bottom: 1rem;">4. Recomendações de Ação</h3>
-        <p style="color: #cbd5e1; line-height: 1.8; font-size: 1rem;">Com base nesta análise, recomendamos:</p>
-        <ul style="color: #cbd5e1; line-height: 2;">
+    st.markdown("""
+    <div class='hud-card'>
+        <h3 style='color: #10B981;'>⬥ 4. Recomendações de Ação</h3>
+        <p>Com base nesta análise, recomendamos:</p>
+        <ul>
             <li><strong>Auditoria de UX Mobile:</strong> Revisar o fluxo de checkout em dispositivos móveis (tempo de carregamento, clareza de botões, processo de pagamento).</li>
             <li><strong>Teste A/B:</strong> Implementar testes para otimizar a experiência mobile (simplificar formulários, aumentar tamanho de botões).</li>
             <li><strong>Monitoramento Contínuo:</strong> Acompanhar métricas de conversão por dispositivo em tempo real.</li>
@@ -785,22 +692,65 @@ def show_storytelling():
     st.markdown("### Resumo Executivo")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.metric("Queda Total", "-44.4%", "-2.0 pp")
+        st.metric("◆ Queda Total", "-44.4%", "-2.0 pp")
     with col2:
-        st.metric("Queda Mobile", "-51.4%", "-2.7 pp")
+        st.metric("◆ Queda Mobile", "-51.4%", "-2.7 pp")
     with col3:
-        st.metric("Estabilidade Desktop", "-7.5%", "-0.3 pp")
+        st.metric("◆ Estabilidade Desktop", "-7.5%", "-0.3 pp")
     with col4:
-        st.metric("Oportunidade", "+R$ 150k", "Anual")
+        st.metric("◆ Oportunidade", "+R$ 150k", "Anual")
+
+def show_contact():
+    st.markdown("# <span class='icon-neon'>◆</span> Contato", unsafe_allow_html=True)
+    st.markdown("Entre em contato para oportunidades e colaborações")
+    st.markdown("---")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        <div class='hud-card'>
+            <h3 style='color: #10B981;'>⬥ Informações de Contato</h3>
+            <p><strong>Email:</strong> seu.email@example.com</p>
+            <p><strong>LinkedIn:</strong> linkedin.com/in/seu-perfil</p>
+            <p><strong>GitHub:</strong> github.com/seu-usuario</p>
+            <p><strong>Localização:</strong> Brasil</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("""
+        <div class='hud-card'>
+            <h3 style='color: #10B981;'>⬥ Disponibilidade</h3>
+            <p><strong>Status:</strong> Aberto a oportunidades</p>
+            <p><strong>Modalidade:</strong> Remoto / Híbrido</p>
+            <p><strong>Tempo de Resposta:</strong> 24-48 horas</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    st.markdown("## Envie uma Mensagem")
+    with st.form("contact_form"):
+        nome = st.text_input("Nome Completo")
+        email = st.text_input("Email")
+        mensagem = st.text_area("Mensagem")
+        submitted = st.form_submit_button("Enviar Mensagem")
+        
+        if submitted:
+            if nome and email and mensagem:
+                st.success("Obrigado pela mensagem. Responderei em breve.")
+            else:
+                st.error("Por favor, preencha todos os campos obrigatórios.")
 
 # Roteamento de Páginas
-if page == "Início":
+if st.session_state.page == "Início":
     show_home()
-elif page == "Sobre":
+elif st.session_state.page == "Sobre":
     show_about()
-elif page == "Projetos":
+elif st.session_state.page == "Projetos":
     show_projects()
-elif page == "Storytelling":
+elif st.session_state.page == "Storytelling":
     show_storytelling()
-elif page == "Contato":
+elif st.session_state.page == "Contato":
     show_contact()
