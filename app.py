@@ -186,7 +186,7 @@ with st.sidebar:
     
     page = st.radio(
         "Navegação",
-        ["Início", "Sobre", "Projetos", "Contato"],
+        ["Início", "Sobre", "Projetos", "Storytelling", "Contato"],
         label_visibility="collapsed"
     )
     
@@ -629,6 +629,158 @@ def show_contact():
             else:
                 st.error("Por favor, preencha todos os campos obrigatórios.")
 
+def show_storytelling():
+    st.markdown("# Análise de Impacto de Negócio")
+    st.markdown("Uma narrativa de dados que transforma números em decisões")
+    st.markdown("---")
+    
+    # Seção 1: O Problema
+    st.markdown("""\n    <div style="background: linear-gradient(135deg, #1a2f4b 0%, #0f1f35 100%); border-left: 4px solid #3b82f6; border-radius: 8px; padding: 2rem; margin: 2rem 0;">
+        <h3 style="color: #60a5fa; margin-bottom: 1rem;">1. O Problema</h3>
+        <p style="color: #cbd5e1; line-height: 1.8; font-size: 1rem;">Uma empresa de varejo online enfrenta uma queda consistente na taxa de conversão de vendas nos últimos 6 meses. O time de negócios não consegue identificar se o problema está na qualidade do tráfego, no comportamento do cliente ou em fatores sazonais.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("### Dados Iniciais")
+    np.random.seed(42)
+    dates = pd.date_range('2023-09-01', periods=180, freq='D')
+    conversion_data = pd.DataFrame({
+        'Data': dates,
+        'Taxa_Conversao': 4.5 - np.linspace(0, 2, 180) + np.random.normal(0, 0.3, 180),
+        'Visitantes': np.random.randint(5000, 15000, 180),
+        'Vendas': np.random.randint(200, 600, 180)
+    })
+    
+    fig1 = go.Figure()
+    fig1.add_trace(go.Scatter(
+        x=conversion_data['Data'],
+        y=conversion_data['Taxa_Conversao'],
+        mode='lines+markers',
+        name='Taxa de Conversão (%)',
+        line=dict(color='#ef4444', width=3),
+        marker=dict(size=6)
+    ))
+    fig1.update_layout(
+        title="Tendência de Taxa de Conversão (6 meses)",
+        xaxis_title="Data",
+        yaxis_title="Taxa de Conversão (%)",
+        template='plotly_dark',
+        plot_bgcolor='#1a2332',
+        paper_bgcolor='#0f172a',
+        hovermode='x unified',
+        height=400
+    )
+    st.plotly_chart(fig1, use_container_width=True)
+    
+    st.markdown("""\n    <div style="background: linear-gradient(135deg, #1a2f4b 0%, #0f1f35 100%); border-left: 4px solid #f59e0b; border-radius: 8px; padding: 2rem; margin: 2rem 0;">
+        <h3 style="color: #fbbf24; margin-bottom: 1rem;">2. A Exploração</h3>
+        <p style="color: #cbd5e1; line-height: 1.8; font-size: 1rem;">Investigamos os dados em profundidade. Segmentamos por fonte de tráfego, dispositivo e período do dia para identificar padrões.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("### Taxa de Conversão por Fonte de Tráfego")
+        traffic_data = pd.DataFrame({
+            'Fonte': ['Orgânico', 'Pago', 'Social', 'Direto'],
+            'Taxa': [3.2, 2.8, 1.5, 4.1]
+        })
+        fig2 = go.Figure(data=[
+            go.Bar(x=traffic_data['Fonte'], y=traffic_data['Taxa'], marker_color=['#3b82f6', '#ef4444', '#f59e0b', '#10b981'])
+        ])
+        fig2.update_layout(
+            title="Por Fonte de Tráfego",
+            template='plotly_dark',
+            plot_bgcolor='#1a2332',
+            paper_bgcolor='#0f172a',
+            height=350
+        )
+        st.plotly_chart(fig2, use_container_width=True)
+    
+    with col2:
+        st.markdown("### Taxa de Conversão por Dispositivo")
+        device_data = pd.DataFrame({
+            'Dispositivo': ['Desktop', 'Mobile', 'Tablet'],
+            'Taxa': [3.8, 2.1, 2.9]
+        })
+        fig3 = go.Figure(data=[
+            go.Bar(x=device_data['Dispositivo'], y=device_data['Taxa'], marker_color=['#3b82f6', '#ef4444', '#f59e0b'])
+        ])
+        fig3.update_layout(
+            title="Por Dispositivo",
+            template='plotly_dark',
+            plot_bgcolor='#1a2332',
+            paper_bgcolor='#0f172a',
+            height=350
+        )
+        st.plotly_chart(fig3, use_container_width=True)
+    
+    st.markdown("""\n    <div style="background: linear-gradient(135deg, #1a2f4b 0%, #0f1f35 100%); border-left: 4px solid #10b981; border-radius: 8px; padding: 2rem; margin: 2rem 0;">
+        <h3 style="color: #6ee7b7; margin-bottom: 1rem;">3. O Insight Crítico</h3>
+        <p style="color: #cbd5e1; line-height: 1.8; font-size: 1rem;"><strong>Descoberta Principal:</strong> A taxa de conversão em dispositivos móveis caiu 45% em 6 meses, enquanto desktop permaneceu estável. Isso sugere um problema de experiência do usuário (UX) específico para mobile.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("### Evolução de Conversão: Desktop vs Mobile")
+    mobile_data = pd.DataFrame({
+        'Data': dates,
+        'Desktop': 4.0 - np.linspace(0, 0.3, 180) + np.random.normal(0, 0.2, 180),
+        'Mobile': 3.5 - np.linspace(0, 1.8, 180) + np.random.normal(0, 0.25, 180)
+    })
+    
+    fig4 = go.Figure()
+    fig4.add_trace(go.Scatter(
+        x=mobile_data['Data'],
+        y=mobile_data['Desktop'],
+        mode='lines',
+        name='Desktop',
+        line=dict(color='#3b82f6', width=3)
+    ))
+    fig4.add_trace(go.Scatter(
+        x=mobile_data['Data'],
+        y=mobile_data['Mobile'],
+        mode='lines',
+        name='Mobile',
+        line=dict(color='#ef4444', width=3, dash='dash')
+    ))
+    fig4.update_layout(
+        title="Divergência de Performance: Desktop vs Mobile",
+        xaxis_title="Data",
+        yaxis_title="Taxa de Conversão (%)",
+        template='plotly_dark',
+        plot_bgcolor='#1a2332',
+        paper_bgcolor='#0f172a',
+        hovermode='x unified',
+        height=400
+    )
+    st.plotly_chart(fig4, use_container_width=True)
+    
+    st.markdown("""\n    <div style="background: linear-gradient(135deg, #1a2f4b 0%, #0f1f35 100%); border-left: 4px solid #8b5cf6; border-radius: 8px; padding: 2rem; margin: 2rem 0;">
+        <h3 style="color: #c4b5fd; margin-bottom: 1rem;">4. Recomendações de Ação</h3>
+        <p style="color: #cbd5e1; line-height: 1.8; font-size: 1rem;">Com base nesta análise, recomendamos:</p>
+        <ul style="color: #cbd5e1; line-height: 2;">
+            <li><strong>Auditoria de UX Mobile:</strong> Revisar o fluxo de checkout em dispositivos móveis (tempo de carregamento, clareza de botões, processo de pagamento).</li>
+            <li><strong>Teste A/B:</strong> Implementar testes para otimizar a experiência mobile (simplificar formulários, aumentar tamanho de botões).</li>
+            <li><strong>Monitoramento Contínuo:</strong> Acompanhar métricas de conversão por dispositivo em tempo real.</li>
+            <li><strong>Impacto Financeiro Esperado:</strong> Recuperar 50% da queda em mobile = +R$ 150k em receita anual.</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    st.markdown("### Resumo Executivo")
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("Queda Total", "-44.4%", "-2.0 pp")
+    with col2:
+        st.metric("Queda Mobile", "-51.4%", "-2.7 pp")
+    with col3:
+        st.metric("Estabilidade Desktop", "-7.5%", "-0.3 pp")
+    with col4:
+        st.metric("Oportunidade", "+R$ 150k", "Anual")
+
 # Roteamento de Páginas
 if page == "Início":
     show_home()
@@ -636,5 +788,7 @@ elif page == "Sobre":
     show_about()
 elif page == "Projetos":
     show_projects()
+elif page == "Storytelling":
+    show_storytelling()
 elif page == "Contato":
     show_contact()
