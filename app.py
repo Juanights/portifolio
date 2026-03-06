@@ -8,6 +8,13 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 
+@st.cache_data
+def load_iris_data():
+    iris_data = load_iris()
+    df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
+    df["target"] = iris_data.target
+    return df, iris_data
+
 st.set_page_config(
     page_title="Portfólio | Analista de Dados",
     page_icon="📊",
@@ -238,19 +245,21 @@ if "page" not in st.session_state:
 
 # Sidebar - Navegação Cyber-Executive
 with st.sidebar:
-    # Foto de Perfil com Efeito Neon
-    import os
-    perfil_path = "Perfil.png"
-    
-    if os.path.exists(perfil_path):
-        st.image(perfil_path, use_column_width=True, caption=None)
-    else:
-        st.markdown("""
-        <div class='profile-placeholder'>
-            👤
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("<p style='text-align: center; color: #CBD5E1; font-size: 0.85rem;'><em>Adicione perfil.jpg</em></p>", unsafe_allow_html=True)
+    # Foto de perfil dinâmica
+    uploaded_photo = st.sidebar.file_uploader(
+    "Upload da sua foto",
+    type=["png", "jpg", "jpeg"]
+)
+
+if uploaded_photo:
+    st.sidebar.image(uploaded_photo, use_column_width=True)
+else:
+    st.markdown("""
+    <div class='profile-placeholder'>
+        👤
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #CBD5E1; font-size: 0.85rem;'><em>Adicione perfil.jpg</em></p>", unsafe_allow_html=True)
     
     st.markdown("## ⚡ Portfólio - Juan Uchise")
     st.markdown("*Analista de Dados | Ciência de Dados*")
@@ -437,14 +446,12 @@ def show_projects():
         
         with tab1:
             st.markdown("### Estatísticas Descritivas")
-            iris_data = load_iris()
-            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
+            df, iris_data = load_iris_data()
             st.dataframe(df.describe(), use_container_width=True)
         
         with tab2:
             st.markdown("### Distribuições de Variáveis")
-            iris_data = load_iris()
-            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
+            df, iris_data = load_iris_data()
             
             col1, col2 = st.columns(2)
             with col1:
