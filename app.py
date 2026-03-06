@@ -341,7 +341,8 @@ def show_about():
     st.markdown("Trajetória profissional e competências técnicas")
     st.markdown("---")
     
-    st.markdown("""
+    with st.expander("📚 Formação Acadêmica"): 
+         st.markdown("""
     <div class='hud-card'>
         <h3 style='color: #10B981;'>⬥ Formação Acadêmica</h3>
         <p><strong>Graduação:</strong> Análise e Desenvolvimento de Sistemas</p>
