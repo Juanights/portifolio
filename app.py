@@ -240,7 +240,7 @@ if "page" not in st.session_state:
 with st.sidebar:
     # Foto de Perfil com Efeito Neon
     import os
-    perfil_path = "perfil.jpg"
+    perfil_path = "perfil.png"
     
     if os.path.exists(perfil_path):
         st.image(perfil_path, use_column_width=True, caption=None)
