@@ -283,14 +283,14 @@ def show_home():
         st.markdown("""
         ### Visão Geral
         
-        Profissional especializado em transformar dados complexos em insights acionáveis. Com experiência em análise exploratória, modelagem preditiva e visualização estratégica, entrego soluções que impulsionam decisões baseadas em dados.
+        Profissional em transição de carreira capaz de transformar dados complexos em insights acionáveis. Com foco em análise exploratória, modelagem preditiva e visualização estratégica, entrego soluções que impulsionam decisões baseadas em dados.
         
         **Competências Principais:**
         
-        • Análise Exploratória de Dados (EDA) e Data Profiling  
+        • Análise Exploratória de Dados (EDA) 
         • Modelagem Preditiva e Machine Learning  
         • Business Intelligence e Visualização Executiva  
-        • Engenharia de Dados e Automação
+        • Storytelling de Dados para Comunicação Eficaz
         """)
     
     with col2:
@@ -354,17 +354,10 @@ def show_about():
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("""
-    <div class='hud-card'>
-        <h3 style='color: #10B981;'>⬥ Certificações</h3>
-    </div>
-    """, unsafe_allow_html=True)
     
     with st.expander("📜 Certificações Profissionais"):
         st.markdown("""
         • **Google Data Analytics Professional Certificate** - Google  
-        • **Python for Data Science** - Coursera  
-        • **Advanced SQL for Data Analysis** - DataCamp
         """)
     
     st.markdown("---")
@@ -376,9 +369,9 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Linguagens de Programação</h4>
-            • <span class='highlight-neon'>Python</span> — Avançado  
-            • <span class='highlight-neon'>SQL</span> — Avançado  
-            • <span class='highlight-neon'>R</span> — Intermediário  
+            • <span class='highlight-neon'>Python</span> — Intermediário  
+            • <span class='highlight-neon'>SQL</span> — Básico  
+            • <span class='highlight-neon'>R</span> — Básico  
             • <span class='highlight-neon'>JavaScript</span> — Básico
         </div>
         """, unsafe_allow_html=True)
@@ -387,10 +380,10 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Bibliotecas & Frameworks</h4>
-            • <span class='highlight-neon'>Pandas</span> — Avançado  
-            • <span class='highlight-neon'>NumPy</span> — Avançado  
-            • <span class='highlight-neon'>Scikit-learn</span> — Avançado  
-            • <span class='highlight-neon'>Plotly</span> — Avançado
+            • <span class='highlight-neon'>Pandas</span> — Basico
+            • <span class='highlight-neon'>NumPy</span> — Basico  
+            • <span class='highlight-neon'>Scikit-learn</span> — Basico  
+            • <span class='highlight-neon'>Plotly</span> — Basico
         </div>
         """, unsafe_allow_html=True)
     
@@ -400,9 +393,8 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Bancos de Dados</h4>
-            • <span class='highlight-neon'>MySQL</span> — Avançado  
-            • <span class='highlight-neon'>PostgreSQL</span> — Intermediário  
-            • <span class='highlight-neon'>MongoDB</span> — Básico
+            • <span class='highlight-neon'>MySQL</span> — Básico  
+            • <span class='highlight-neon'>SQL Server</span> — Básico 
         </div>
         """, unsafe_allow_html=True)
     
@@ -410,9 +402,9 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Ferramentas de BI</h4>
-            • <span class='highlight-neon'>Power BI</span> — Avançado  
-            • <span class='highlight-neon'>Tableau</span> — Intermediário  
-            • <span class='highlight-neon'>Streamlit</span> — Avançado
+            • <span class='highlight-neon'>Power BI</span> — Básico  
+            • <span class='highlight-neon'>Excel/Sheets</span> — Intermediário  
+            • <span class='highlight-neon'>Streamlit</span> — Intermediário
         </div>
         """, unsafe_allow_html=True)
 
