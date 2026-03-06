@@ -344,18 +344,14 @@ def show_about():
     st.markdown("""
     <div class='hud-card'>
         <h3 style='color: #10B981;'>⬥ Formação Acadêmica</h3>
-        <p><strong>Graduação:</strong> Análise de Dados / Ciência de Dados</p>
-        <p><strong>Instituição:</strong> [Sua Universidade]</p>
-        <p><strong>Período:</strong> [Ano de Início] - [Ano de Conclusão]</p>
-        <p><strong>Destaque:</strong> GPA 3.8/4.0 | Bolsista de Excelência</p>
-    </div>
+        <p><strong>Graduação:</strong> Análise e Desenvolvimento de Sistemas</p>
+        <p><strong>Instituição:</strong> UNICID</p>
+        <p><strong>Período:</strong> 2023 - 2025</p>
+        
                 
-        <div class='hud-card'>
-        <h3 style='color: #10B981;'>⬥ Formação Acadêmica</h3>
-        <p><strong>Graduação:</strong> Análise de Dados / Ciência de Dados</p>
-        <p><strong>Instituição:</strong> [Sua Universidade]</p>
-        <p><strong>Período:</strong> [Ano de Início] - [Ano de Conclusão]</p>
-        <p><strong>Destaque:</strong> GPA 3.8/4.0 | Bolsista de Excelência</p>
+        <p><strong>Pós-Graduação:</strong> Ciência de Dados e Inteligência Artificial</p>
+        <p><strong>Instituição:</strong> UNINTER</p>
+        <p><strong>Período:</strong> 2025 - 2026</p>
     </div>
     """, unsafe_allow_html=True)
     
