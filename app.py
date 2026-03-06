@@ -358,7 +358,7 @@ def show_about():
    
     st.markdown("""
     <div class='hud-card'>        
-        <h3 style='color: #10B981;'>"📜 Certificações Profissionais"</h3>        
+        <h3 style='color: #10B981;'>📜 Certificações Profissionais</h3>        
         <strong>Google Data Analytics Professional Certificate</strong> - Google
     </div>          
         """, unsafe_allow_html=True)
@@ -398,7 +398,8 @@ def show_about():
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Bancos de Dados</h4>
             • <span class='highlight-neon'>MySQL</span> — Básico<br />  
-            • <span class='highlight-neon'>SQL Server</span> — Básico<br /> 
+            • <span class='highlight-neon'>SQL Server</span> — Básico<br />
+            • <span class='highlight-neon'>MongoDB</span> — Básico<br />  
         </div>
         """, unsafe_allow_html=True)
     
