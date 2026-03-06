@@ -369,13 +369,10 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Linguagens de Programação</h4>
-            • <span class='highlight-neon'>Python</span> — Intermediário
-                      
-            • <span class='highlight-neon'>SQL</span> — Básico  
-                    
-            • <span class='highlight-neon'>R</span> — Básico  
-                    
-            • <span class='highlight-neon'>JavaScript</span> — Básico
+            • <span class='highlight-neon'>Python</span> — Intermediário<br />
+            • <span class='highlight-neon'>SQL</span> — Básico<br /> 
+            • <span class='highlight-neon'>R</span> — Básico<br />  
+            • <span class='highlight-neon'>JavaScript</span> — Básico<br />
         </div>
         """, unsafe_allow_html=True)
     
