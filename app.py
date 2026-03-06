@@ -341,7 +341,7 @@ def show_about():
     st.markdown("Trajetória profissional e competências técnicas")
     st.markdown("---")
     
-    with st.expander("📚 Formação Acadêmica"): 
+    with st.expander("<h3>📚 Formação Acadêmica</h3>"): 
          st.markdown("""
     <div class='hud-card'>
         <h3 style='color: #10B981;'>⬥ Formação Acadêmica</h3>
@@ -380,10 +380,10 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Bibliotecas & Frameworks</h4>
-            • <span class='highlight-neon'>Pandas</span> — Basico
-            • <span class='highlight-neon'>NumPy</span> — Basico  
-            • <span class='highlight-neon'>Scikit-learn</span> — Basico  
-            • <span class='highlight-neon'>Plotly</span> — Basico
+            • <span class='highlight-neon'>Pandas</span> — Basico<br />
+            • <span class='highlight-neon'>NumPy</span> — Basico<br />  
+            • <span class='highlight-neon'>Scikit-learn</span> — Basico<br />  
+            • <span class='highlight-neon'>Plotly</span> — Basico<br />
         </div>
         """, unsafe_allow_html=True)
     
@@ -393,8 +393,8 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Bancos de Dados</h4>
-            • <span class='highlight-neon'>MySQL</span> — Básico  
-            • <span class='highlight-neon'>SQL Server</span> — Básico 
+            • <span class='highlight-neon'>MySQL</span> — Básico<br />  
+            • <span class='highlight-neon'>SQL Server</span> — Básico<br /> 
         </div>
         """, unsafe_allow_html=True)
     
@@ -402,9 +402,9 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Ferramentas de BI</h4>
-            • <span class='highlight-neon'>Power BI</span> — Básico  
-            • <span class='highlight-neon'>Excel/Sheets</span> — Intermediário  
-            • <span class='highlight-neon'>Streamlit</span> — Intermediário
+            • <span class='highlight-neon'>Power BI</span> — Básico<br />  
+            • <span class='highlight-neon'>Excel/Sheets</span> — Intermediário<br />  
+            • <span class='highlight-neon'>Streamlit</span> — Intermediário<br />
         </div>
         """, unsafe_allow_html=True)
 
