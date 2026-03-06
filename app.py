@@ -355,8 +355,8 @@ def show_about():
     """, unsafe_allow_html=True)
     
     
-    with st.expander("📜 Certificações Profissionais"):
-        st.markdown("""
+   
+    st.markdown("""
             <h3 style='color: #10B981;'>"📜 Certificações Profissionais"</h3>        
         • **Google Data Analytics Professional Certificate** - Google  
         """)
