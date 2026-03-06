@@ -287,10 +287,10 @@ def show_home():
         
         **Competências Principais:**
         
-        • Análise Exploratória de Dados (EDA) 
-        • Modelagem Preditiva e Machine Learning  
-        • Business Intelligence e Visualização Executiva  
-        • Storytelling de Dados para Comunicação Eficaz
+        • Análise Exploratória de Dados (EDA) <br />
+        • Modelagem Preditiva e Machine Learning <br />
+        • Business Intelligence e Visualização Executiva <br />  
+        • Storytelling de Dados para Comunicação Eficaz <br />
         """)
     
     with col2:
