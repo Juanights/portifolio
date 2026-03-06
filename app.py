@@ -10,7 +10,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 st.set_page_config(
     page_title="Portfólio | Analista de Dados",
-    page_icon="🚀",
+    page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
 )
