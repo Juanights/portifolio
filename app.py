@@ -359,7 +359,7 @@ def show_about():
     st.markdown("""
     <div class='hud-card'>        
         <h3 style='color: #10B981;'>"📜 Certificações Profissionais"</h3>        
-        • **Google Data Analytics Professional Certificate** - Google
+        <strong>Google Data Analytics Professional Certificate</strong> - Google
     </div>          
         """, unsafe_allow_html=True)
     
