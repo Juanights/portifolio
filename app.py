@@ -346,9 +346,7 @@ def show_about():
         <h3 style='color: #10B981;'>⬥ Formação Acadêmica</h3>
         <p><strong>Graduação:</strong> Análise e Desenvolvimento de Sistemas</p>
         <p><strong>Instituição:</strong> UNICID</p>
-        <p><strong>Período:</strong> 2023 - 2025</p>
-        
-                
+        <p><strong>Período:</strong> 2023 - 2025</p>       
         <p><strong>Pós-Graduação:</strong> Ciência de Dados e Inteligência Artificial</p>
         <p><strong>Instituição:</strong> UNINTER</p>
         <p><strong>Período:</strong> 2025 - 2026</p>
