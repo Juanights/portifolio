@@ -196,6 +196,39 @@ st.markdown("""
         font-weight: 600;
         text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
     }
+    
+    /* Profile Image */
+    .profile-image {
+        border-radius: 50%;
+        border: 3px solid #10B981;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 20px rgba(16, 185, 129, 0.1);
+        display: block;
+        margin: 0 auto 1.5rem;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        transition: all 0.3s ease;
+    }
+    
+    .profile-image:hover {
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.8), inset 0 0 30px rgba(16, 185, 129, 0.2);
+        transform: scale(1.05);
+    }
+    
+    /* Profile Placeholder */
+    .profile-placeholder {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 1.5rem;
+        border: 3px solid #10B981;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        background: linear-gradient(135deg, #1A0F2E 0%, #0F0718 100%);
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 20px rgba(16, 185, 129, 0.1);
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -205,6 +238,20 @@ if "page" not in st.session_state:
 
 # Sidebar - Navegação Cyber-Executive
 with st.sidebar:
+    # Foto de Perfil com Efeito Neon
+    import os
+    perfil_path = "perfil.jpg"
+    
+    if os.path.exists(perfil_path):
+        st.image(perfil_path, use_column_width=True, caption=None)
+    else:
+        st.markdown("""
+        <div class='profile-placeholder'>
+            👤
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; color: #CBD5E1; font-size: 0.85rem;'><em>Adicione perfil.jpg</em></p>", unsafe_allow_html=True)
+    
     st.markdown("## ⚡ Portfólio")
     st.markdown("*Analista de Dados | Ciência de Dados*")
     st.markdown("---")
