@@ -349,6 +349,14 @@ def show_about():
         <p><strong>Período:</strong> [Ano de Início] - [Ano de Conclusão]</p>
         <p><strong>Destaque:</strong> GPA 3.8/4.0 | Bolsista de Excelência</p>
     </div>
+                
+        <div class='hud-card'>
+        <h3 style='color: #10B981;'>⬥ Formação Acadêmica</h3>
+        <p><strong>Graduação:</strong> Análise de Dados / Ciência de Dados</p>
+        <p><strong>Instituição:</strong> [Sua Universidade]</p>
+        <p><strong>Período:</strong> [Ano de Início] - [Ano de Conclusão]</p>
+        <p><strong>Destaque:</strong> GPA 3.8/4.0 | Bolsista de Excelência</p>
+    </div>
     """, unsafe_allow_html=True)
     
     st.markdown("""
