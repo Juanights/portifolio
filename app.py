@@ -341,10 +341,10 @@ def show_about():
     st.markdown("Trajetória profissional e competências técnicas")
     st.markdown("---")
     
-    with st.expander("<h3>📚 Formação Acadêmica</h3>"): 
-         st.markdown("""
+   
+    st.markdown("""
     <div class='hud-card'>
-        <h3 style='color: #10B981;'>⬥ Formação Acadêmica</h3>
+        <h3 style='color: #10B981;'>📚 Formação Acadêmica</h3>
         <p><strong>Graduação:</strong> Análise e Desenvolvimento de Sistemas</p>
         <p><strong>Instituição:</strong> UNICID</p>
         <p><strong>Período:</strong> 2023 - 2025</p>       
@@ -357,6 +357,7 @@ def show_about():
     
     with st.expander("📜 Certificações Profissionais"):
         st.markdown("""
+            <h3 style='color: #10B981;'>"📜 Certificações Profissionais"</h3>        
         • **Google Data Analytics Professional Certificate** - Google  
         """)
     
