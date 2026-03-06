@@ -357,8 +357,10 @@ def show_about():
     
    
     st.markdown("""
-            <h3 style='color: #10B981;'>"📜 Certificações Profissionais"</h3>        
-        • **Google Data Analytics Professional Certificate** - Google  
+    <div class='hud-card'>        
+        <h3 style='color: #10B981;'>"📜 Certificações Profissionais"</h3>        
+        • **Google Data Analytics Professional Certificate** - Google
+    </div>          
         """)
     
     st.markdown("---")
