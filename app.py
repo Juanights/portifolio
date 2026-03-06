@@ -252,7 +252,7 @@ with st.sidebar:
         """, unsafe_allow_html=True)
         st.markdown("<p style='text-align: center; color: #CBD5E1; font-size: 0.85rem;'><em>Adicione perfil.jpg</em></p>", unsafe_allow_html=True)
     
-    st.markdown("## ⚡ Portfólio")
+    st.markdown("## ⚡ Portfólio - Juan Uchise")
     st.markdown("*Analista de Dados | Ciência de Dados*")
     st.markdown("---")
     
