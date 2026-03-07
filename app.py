@@ -8,16 +8,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 
-@st.cache_data
-def load_iris_data():
-    iris_data = load_iris()
-    df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
-    df["target"] = iris_data.target
-    return df, iris_data
-
 st.set_page_config(
     page_title="Portfólio | Analista de Dados",
-    page_icon="📊",
+    page_icon="🚀",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -204,37 +197,50 @@ st.markdown("""
         text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
     }
     
-    /* Profile Image */
-    .profile-image {
-        border-radius: 50%;
-        border: 3px solid #10B981;
-        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 20px rgba(16, 185, 129, 0.1);
-        display: block;
-        margin: 0 auto 1.5rem;
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        transition: all 0.3s ease;
+    /* Navigation Icons Menu */
+    .nav-icons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 1.5rem 0;
+        padding: 1rem 0;
     }
     
-    .profile-image:hover {
-        box-shadow: 0 0 30px rgba(16, 185, 129, 0.8), inset 0 0 30px rgba(16, 185, 129, 0.2);
-        transform: scale(1.05);
-    }
-    
-    /* Profile Placeholder */
-    .profile-placeholder {
-        width: 150px;
-        height: 150px;
-        margin: 0 auto 1.5rem;
-        border: 3px solid #10B981;
-        border-radius: 50%;
+    .nav-icon-btn {
         display: flex;
         align-items: center;
-        justify-content: center;
-        font-size: 3rem;
-        background: linear-gradient(135deg, #1A0F2E 0%, #0F0718 100%);
-        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 20px rgba(16, 185, 129, 0.1);
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        background-color: transparent;
+        border: 2px solid #334155;
+        border-radius: 4px;
+        color: #CBD5E1;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.95rem;
+        text-align: left;
+        width: 100%;
+    }
+    
+    .nav-icon-btn:hover {
+        border-color: #10B981;
+        color: #10B981;
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+    }
+    
+    .nav-icon-btn.active {
+        background-color: #1A0F2E;
+        border-color: #10B981;
+        color: #10B981;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 10px rgba(16, 185, 129, 0.1);
+        text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+    
+    .nav-icon {
+        font-size: 1.25rem;
+        min-width: 1.5rem;
+        text-align: center;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -245,35 +251,67 @@ if "page" not in st.session_state:
 
 # Sidebar - Navegação Cyber-Executive
 with st.sidebar:
-    # Foto de perfil dinâmica
-    uploaded_photo = st.sidebar.file_uploader(
-    "Upload da sua foto",
-    type=["png", "jpg", "jpeg"]
-)
-
-if uploaded_photo:
-    st.sidebar.image(uploaded_photo, use_column_width=True)
-else:
-    st.markdown("""
-    <div class='profile-placeholder'>
-        👤
-    </div>
-    """, unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #CBD5E1; font-size: 0.85rem;'><em>Adicione perfil.jpg</em></p>", unsafe_allow_html=True)
+    # Foto de Perfil com Efeito Neon Circular
+    import os
+    import base64
     
-    st.markdown("## ⚡ Portfólio - Juan Uchise")
+    perfil_path = "perfil.jpg"
+    
+    if os.path.exists(perfil_path):
+        with open(perfil_path, "rb") as img_file:
+            img_base64 = base64.b64encode(img_file.read()).decode()
+        
+        st.markdown(f"""
+        <div style='text-align: center; margin-bottom: 1.5rem;'>
+            <img src='data:image/jpeg;base64,{img_base64}' 
+                 style='width: 150px; height: 150px; border-radius: 50%; 
+                        border: 3px solid #10B981; 
+                        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 20px rgba(16, 185, 129, 0.1);
+                        object-fit: cover; display: block; margin: 0 auto;'>
+        </div>
+        """, unsafe_allow_html=True)
+    else:
+        st.markdown("""
+        <div style='text-align: center; margin-bottom: 1.5rem;'>
+            <div style='width: 150px; height: 150px; margin: 0 auto; 
+                        border: 3px solid #10B981; border-radius: 50%; 
+                        display: flex; align-items: center; justify-content: center; 
+                        font-size: 3rem; background: linear-gradient(135deg, #1A0F2E 0%, #0F0718 100%); 
+                        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 20px rgba(16, 185, 129, 0.1);'>
+                👤
+            </div>
+            <p style='text-align: center; color: #CBD5E1; font-size: 0.85rem; margin-top: 0.5rem;'><em>Adicione perfil.jpg</em></p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("## ⚡ Portfólio")
     st.markdown("*Analista de Dados | Ciência de Dados*")
     st.markdown("---")
     
-    page = st.radio(
-        "Navegação",
-        ["Início", "Sobre", "Projetos", "Storytelling", "Contato"],
-        label_visibility="collapsed",
-        index=["Início", "Sobre", "Projetos", "Storytelling", "Contato"].index(st.session_state.page)
-    )
+    # Menu de Navegação com Ícones Neon
+    st.markdown("<div class='nav-icons-container'>", unsafe_allow_html=True)
     
-    # Atualizar session_state quando o radio muda
-    st.session_state.page = page
+    nav_items = [
+        ("Início", "🏠"),
+        ("Sobre", "👤"),
+        ("Projetos", "📊"),
+        ("Storytelling", "📖"),
+        ("Contato", "✉️")
+    ]
+    
+    for page_name, icon in nav_items:
+        is_active = st.session_state.page == page_name
+        active_class = "active" if is_active else ""
+        
+        if st.button(
+            f"{icon} {page_name}",
+            key=f"nav_{page_name}",
+            use_container_width=True
+        ):
+            st.session_state.page = page_name
+            st.rerun()
+    
+    st.markdown("</div>", unsafe_allow_html=True)
     
     st.markdown("---")
     st.markdown("""
@@ -292,14 +330,14 @@ def show_home():
         st.markdown("""
         ### Visão Geral
         
-        Profissional em transição de carreira capaz de transformar dados complexos em insights acionáveis. Com foco em análise exploratória, modelagem preditiva e visualização estratégica, entrego soluções que impulsionam decisões baseadas em dados.
+        Profissional especializado em transformar dados complexos em insights acionáveis. Com experiência em análise exploratória, modelagem preditiva e visualização estratégica, entrego soluções que impulsionam decisões baseadas em dados.
         
         **Competências Principais:**
         
-        • Análise Exploratória de Dados (EDA)
-        • Modelagem Preditiva e Machine Learning
-        • Business Intelligence e Visualização Executiva
-        • Storytelling de Dados para Comunicação Eficaz
+        • Análise Exploratória de Dados (EDA) e Data Profiling  
+        • Modelagem Preditiva e Machine Learning  
+        • Business Intelligence e Visualização Executiva  
+        • Engenharia de Dados e Automação
         """)
     
     with col2:
@@ -350,28 +388,28 @@ def show_about():
     st.markdown("Trajetória profissional e competências técnicas")
     st.markdown("---")
     
-   
     st.markdown("""
     <div class='hud-card'>
-        <h3 style='color: #10B981;'>📚 Formação Acadêmica</h3>
-        <p><strong>Graduação:</strong> Análise e Desenvolvimento de Sistemas</p>
-        <p><strong>Instituição:</strong> UNICID</p>
-        <p><strong>Período:</strong> 2023 - 2025</p>       
-        <p><strong>Pós-Graduação:</strong> Ciência de Dados e Inteligência Artificial</p>
-        <p><strong>Instituição:</strong> UNINTER</p>
-        <p><strong>Período:</strong> 2025 - 2026</p>
+        <h3 style='color: #10B981;'>⬥ Formação Acadêmica</h3>
+        <p><strong>Graduação:</strong> Análise de Dados / Ciência de Dados</p>
+        <p><strong>Instituição:</strong> [Sua Universidade]</p>
+        <p><strong>Período:</strong> [Ano de Início] - [Ano de Conclusão]</p>
+        <p><strong>Destaque:</strong> GPA 3.8/4.0 | Bolsista de Excelência</p>
     </div>
     """, unsafe_allow_html=True)
     
-    
-   
     st.markdown("""
-    <div class='hud-card'>        
-        <h3 style='color: #10B981;'>📜 Certificações Profissionais</h3>        
-        <strong>Google Data Analytics Professional Certificate</strong> - Google
-    </div>          
-        """, unsafe_allow_html=True)
+    <div class='hud-card'>
+        <h3 style='color: #10B981;'>⬥ Certificações</h3>
+    </div>
+    """, unsafe_allow_html=True)
     
+    with st.expander("📜 Certificações Profissionais"):
+        st.markdown("""
+        • **Google Data Analytics Professional Certificate** - Google  
+        • **Python for Data Science** - Coursera  
+        • **Advanced SQL for Data Analysis** - DataCamp
+        """)
     
     st.markdown("---")
     
@@ -382,10 +420,10 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Linguagens de Programação</h4>
-            • <span class='highlight-neon'>Python</span> — Intermediário<br />
-            • <span class='highlight-neon'>SQL</span> — Básico<br /> 
-            • <span class='highlight-neon'>R</span> — Básico<br />  
-            • <span class='highlight-neon'>JavaScript</span> — Básico<br />
+            • <span class='highlight-neon'>Python</span> — Avançado  
+            • <span class='highlight-neon'>SQL</span> — Avançado  
+            • <span class='highlight-neon'>R</span> — Intermediário  
+            • <span class='highlight-neon'>JavaScript</span> — Básico
         </div>
         """, unsafe_allow_html=True)
     
@@ -393,10 +431,10 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Bibliotecas & Frameworks</h4>
-            • <span class='highlight-neon'>Pandas</span> — Basico<br />
-            • <span class='highlight-neon'>NumPy</span> — Basico<br />  
-            • <span class='highlight-neon'>Scikit-learn</span> — Basico<br />  
-            • <span class='highlight-neon'>Plotly</span> — Basico<br />
+            • <span class='highlight-neon'>Pandas</span> — Avançado  
+            • <span class='highlight-neon'>NumPy</span> — Avançado  
+            • <span class='highlight-neon'>Scikit-learn</span> — Avançado  
+            • <span class='highlight-neon'>Plotly</span> — Avançado
         </div>
         """, unsafe_allow_html=True)
     
@@ -406,9 +444,9 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Bancos de Dados</h4>
-            • <span class='highlight-neon'>MySQL</span> — Básico<br />  
-            • <span class='highlight-neon'>SQL Server</span> — Básico<br />
-            • <span class='highlight-neon'>MongoDB</span> — Básico<br />  
+            • <span class='highlight-neon'>MySQL</span> — Avançado  
+            • <span class='highlight-neon'>PostgreSQL</span> — Intermediário  
+            • <span class='highlight-neon'>MongoDB</span> — Básico
         </div>
         """, unsafe_allow_html=True)
     
@@ -416,9 +454,9 @@ def show_about():
         st.markdown("""
         <div class='hud-card'>
             <h4 style='color: #10B981;'>Ferramentas de BI</h4>
-            • <span class='highlight-neon'>Power BI</span> — Básico<br />  
-            • <span class='highlight-neon'>Excel/Sheets</span> — Intermediário<br />  
-            • <span class='highlight-neon'>Streamlit</span> — Intermediário<br />
+            • <span class='highlight-neon'>Power BI</span> — Avançado  
+            • <span class='highlight-neon'>Tableau</span> — Intermediário  
+            • <span class='highlight-neon'>Streamlit</span> — Avançado
         </div>
         """, unsafe_allow_html=True)
 
@@ -446,12 +484,14 @@ def show_projects():
         
         with tab1:
             st.markdown("### Estatísticas Descritivas")
-            df, iris_data = load_iris_data()
+            iris_data = load_iris()
+            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
             st.dataframe(df.describe(), use_container_width=True)
         
         with tab2:
             st.markdown("### Distribuições de Variáveis")
-            df, iris_data = load_iris_data()
+            iris_data = load_iris()
+            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
             
             col1, col2 = st.columns(2)
             with col1:
