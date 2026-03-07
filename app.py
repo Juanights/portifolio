@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 
 st.set_page_config(
-    page_title="Portfólio | Analista de Dados",
+    page_title="Portfólio | Juan Uchise",
     page_icon="🚀",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -30,9 +30,9 @@ st.markdown("""
     }
     
     /* Main Container */
-    .main {
-        background-color: #0F0718;
-        padding: 2rem;
+    [data-testid="stAppViewContainer"]{
+    background-color:#0F0718;
+    padding: 2rem;
     }
     
     /* Tipografia */
@@ -281,7 +281,355 @@ st.markdown("""
         min-width: 1.5rem;
         text-align: center;
     }
-    </style>
+            
+            .education-container{
+    display:flex;
+    gap:25px;
+    margin-top:20px;
+}
+
+.edu-card{
+    flex:1;
+    padding:20px;
+    border-radius:6px;
+    background: linear-gradient(135deg,#1A0F2E,#0F0718);
+    border:1px solid rgba(16,185,129,0.25);
+    transition: all 0.35s ease;
+}
+
+.edu-card:hover{
+
+    transform: translateY(-6px);
+
+    border:1px solid #10B981;
+
+    box-shadow:
+        0 0 10px rgba(16,185,129,0.3),
+        0 0 20px rgba(16,185,129,0.3),
+        inset 0 0 10px rgba(16,185,129,0.2);
+}
+
+.edu-card h4{
+    color:#10B981;
+}
+
+.edu-tags{
+    margin-top:10px;
+}
+
+.edu-tags span{
+
+    display:inline-block;
+    margin:4px;
+    padding:4px 10px;
+
+    border:1px solid #10B981;
+    border-radius:20px;
+
+    font-size:0.8rem;
+
+    color:#10B981;
+
+    box-shadow:0 0 6px rgba(16,185,129,0.3);
+}
+            .badge-container{
+
+display:flex;
+gap:25px;
+margin-top:20px;
+
+}
+
+.badge-card{
+
+flex:1;
+padding:20px;
+
+text-align:center;
+
+background:linear-gradient(135deg,#1A0F2E,#0F0718);
+
+border:1px solid rgba(16,185,129,0.25);
+
+border-radius:6px;
+
+transition:all 0.35s ease;
+
+}
+
+.badge-card:hover{
+
+transform:translateY(-6px);
+
+border:1px solid #10B981;
+
+box-shadow:
+0 0 12px rgba(16,185,129,0.4),
+inset 0 0 10px rgba(16,185,129,0.2);
+
+}
+
+.badge-card h4{
+
+color:#10B981;
+margin-top:10px;
+
+}
+
+.language-bar{
+
+margin-top:10px;
+
+height:8px;
+
+background:#1A0F2E;
+
+border-radius:10px;
+
+}
+
+.language-progress{
+
+height:100%;
+width:45%;
+
+background:#10B981;
+
+border-radius:10px;
+
+box-shadow:0 0 8px rgba(16,185,129,0.6);
+
+}
+.skills-container{
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+
+gap:20px;
+margin-top:20px;
+
+}
+
+.skill-category{
+
+padding:18px;
+
+background:linear-gradient(135deg,#1A0F2E,#0F0718);
+
+border:1px solid rgba(16,185,129,0.25);
+
+border-radius:6px;
+
+}
+
+.skill-category h4{
+
+color:#10B981;
+margin-bottom:10px;
+
+}
+
+.skill-badge{
+
+display:inline-block;
+
+margin:4px;
+padding:6px 12px;
+
+font-size:0.85rem;
+
+border-radius:20px;
+
+border:1px solid #10B981;
+
+color:#10B981;
+
+transition:all 0.3s ease;
+
+}
+
+.skill-badge:hover{
+
+background:#10B981;
+
+color:#0F0718;
+
+box-shadow:
+0 0 10px rgba(16,185,129,0.6),
+0 0 20px rgba(16,185,129,0.4);
+
+}
+            
+.hero{
+padding:40px 10px 20px 10px;
+}
+
+.hero-title{
+font-size:48px;
+font-weight:700;
+color:#E5E7EB;
+margin-bottom:10px;
+}
+
+.hero-sub{
+font-size:20px;
+color:#9CA3AF;
+max-width:700px;
+}
+.hero-buttons{
+
+display:flex;
+
+gap:20px;
+
+margin-top:20px;
+
+}
+
+.hero-link{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:8px 16px;
+
+border:1px solid #10B981;
+
+border-radius:6px;
+
+text-decoration:none;
+
+color:#10B981 !important;
+
+font-weight:600;
+
+transition:all 0.3s ease;
+
+}
+
+.hero-link span{
+color:#10B981;
+}
+
+
+/* hover */
+
+.hero-link:hover{
+
+background:#10B981;
+
+color:#0F0718 !important;
+
+box-shadow:
+0 0 12px rgba(16,185,129,0.7),
+0 0 24px rgba(16,185,129,0.5);
+
+transform:translateY(-2px);
+
+}
+
+.hero-link:hover span{
+color:#0F0718;
+}
+
+.hero-link img{
+
+width:20px;
+
+height:20px;
+
+filter:drop-shadow(0 0 4px rgba(16,185,129,0.6));
+
+}
+
+.hero-link:hover{
+
+background:#10B981;
+
+color:#0F0718;
+
+box-shadow:
+0 0 12px rgba(16,185,129,0.7),
+0 0 24px rgba(16,185,129,0.5);
+
+transform:translateY(-2px);
+
+}
+            
+.profile-card{
+
+padding:20px;
+
+background:linear-gradient(145deg,#0F172A,#020617);
+
+border-radius:10px;
+
+border:1px solid rgba(16,185,129,0.25);
+
+box-shadow:0 0 10px rgba(16,185,129,0.15);
+
+transition:0.3s;
+
+}
+
+.profile-card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+0 0 15px rgba(16,185,129,0.4);
+
+}
+
+.tech-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+
+gap:20px;
+
+margin-top:20px;
+
+}
+
+.tech-card{
+
+text-align:center;
+
+padding:15px;
+
+border-radius:8px;
+
+background:#020617;
+
+border:1px solid rgba(16,185,129,0.2);
+
+transition:0.3s;
+
+}
+
+.tech-card img{
+width:40px;
+height:40px;
+margin-bottom:6px;
+filter: drop-shadow(0 0 6px rgba(16,185,129,0.5));
+}
+
+.tech-card:hover{
+
+transform:translateY(-5px);
+
+border:1px solid #10B981;
+
+box-shadow:
+0 0 10px rgba(16,185,129,0.4);
+
+}
+</style>
     """, unsafe_allow_html=True)
 
 # Inicializar session_state para navegação
@@ -294,7 +642,7 @@ with st.sidebar:
     import os
     import base64
     
-    perfil_path = "perfil.jpg"
+    perfil_path = "Perfil.png"
     
     if os.path.exists(perfil_path):
         with open(perfil_path, "rb") as img_file:
@@ -332,7 +680,7 @@ with st.sidebar:
     
     nav_items = [
         ("Início", "🏠"),
-        ("Sobre", "👤"),
+        ("Sobre mim", "👤"),
         ("Projetos", "📊"),
         ("Storytelling", "📖"),
         ("Contato", "✉️")
@@ -359,145 +707,306 @@ with st.sidebar:
     """)
 
 def show_home():
-    st.markdown("# <span class='icon-neon'>◆</span> Analista de Dados & Cientista de Dados", unsafe_allow_html=True)
-    st.markdown("Transformando dados em estratégia de negócio")
+
+    # HERO
+    st.markdown("""
+    <div class="hero">
+
+    <h1 class="hero-title">
+    Juan Uchise
+    </h1>
+
+    <p class="hero-sub">
+    Analista de Dados • Ciência de Dados • Machine Learning
+    </p>
+
+    <div class="hero-buttons">
+
+    <a href="https://github.com/juanights" target="_blank" class="hero-link">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
+    <span>GitHub</span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/juan-uchise/" target="_blank" class="hero-link">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg">
+    <span>LinkedIn</span>
+    </a>
+
+    </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
     st.markdown("---")
-    
-    col1, col2 = st.columns([2, 1], gap="large")
-    
+
+    # BIO + PROFILE
+    col1, col2 = st.columns([2,1], gap="large")
+
     with col1:
         st.markdown("""
-        ### Visão Geral
-        
-        Profissional especializado em transformar dados complexos em insights acionáveis. Com experiência em análise exploratória, modelagem preditiva e visualização estratégica, entrego soluções que impulsionam decisões baseadas em dados.
-        
-        **Competências Principais:**
-        
-        • Análise Exploratória de Dados (EDA) e Data Profiling  
-        • Modelagem Preditiva e Machine Learning  
-        • Business Intelligence e Visualização Executiva  
-        • Engenharia de Dados e Automação
+        ## Visão Geral
+
+        Profissional em transição para a área de dados com foco em:
+
+        • **Análise Exploratória de Dados (EDA)**  
+        • **Machine Learning e Modelagem Preditiva**  
+        • **Business Intelligence**  
+        • **Storytelling com Dados**
+
+        Meu objetivo é transformar **dados complexos em insights acionáveis**
+        que apoiem decisões estratégicas.
         """)
-    
+
     with col2:
         st.markdown("""
-        <div class='hud-card'>
-            <h4 style='color: #10B981; margin-bottom: 1rem;'>⬥ Perfil</h4>
-            <p><strong>Formação:</strong> Análise de Dados / Ciência de Dados</p>
-            <p><strong>Localização:</strong> Brasil</p>
-            <p><strong>Experiência:</strong> Iniciante em Dados</p>
-            <p><strong>Disponibilidade:</strong> Aberto a oportunidades</p>
+        <div class="profile-card">
+
+        <h4>Resumo profissional</h4>
+
+        <p>🎓 <strong>Formação</strong><br>
+        Ciência de Dados</p>
+
+        <p>🌎 <b>Localização</b><br>
+        Brasil</p>
+
+        <p>📊 <b>Experiência</b><br>
+        Início de carreira em dados</p>
+
+        <p>🚀 <b>Status</b><br>
+        Aberto a oportunidades</p>
+
         </div>
         """, unsafe_allow_html=True)
-    
+
     st.markdown("---")
-    
+
+    # METRICS
     st.markdown("## Destaques")
+
     col1, col2, col3 = st.columns(3)
+
     with col1:
-        st.metric("◆ Projetos", "5+", "2 em desenvolvimento")
+        st.metric("Projetos", "2+", "em desenvolvimento")
+
     with col2:
-        st.metric("◆ Linguagens", "Python, SQL", "R")
+        st.metric("Linguagens", "Python • SQL", "R")
+
     with col3:
-        st.metric("◆ Ferramentas", "Streamlit, Power BI", "Tableau, Jupyter")
-    
+        st.metric("Ferramentas", "Power BI • Excel", "Tableau")
+
     st.markdown("---")
-    
-    st.markdown("## Explore")
+
+    # TECH STACK
+    st.markdown("## Tech Stack")
+
+    st.markdown("""
+    <div class="tech-grid">
+
+    <div class="tech-card">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
+    <p>Python</p>
+    </div>
+
+    <div class="tech-card">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg">
+    <p>Pandas</p>
+    </div>
+
+    <div class="tech-card">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg">
+    <p>NumPy</p>
+    </div>
+
+    <div class="tech-card">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">
+    <p>SQL</p>
+    </div>
+
+    <div class="tech-card">
+    <img src="https://streamlit.io/images/brand/streamlit-mark-color.png">
+    <p>Streamlit</p>
+    </div>
+
+    <div class="tech-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg">
+    <p>Power BI</p>
+    </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    # EXPLORE
+    st.markdown("## Explore o Portfólio")
+
     col1, col2, col3, col4 = st.columns(4)
+
     with col1:
-        if st.button("▶ Projetos", use_container_width=True, key="btn_explore_projetos"):
+        if st.button("Projetos", use_container_width=True):
             st.session_state.page = "Projetos"
             st.rerun()
+
     with col2:
-        if st.button("▶ Sobre Mim", use_container_width=True, key="btn_explore_sobre"):
-            st.session_state.page = "Sobre"
+        if st.button("Sobre mim", use_container_width=True):
+            st.session_state.page = "Sobre mim"
             st.rerun()
+
     with col3:
-        if st.button("▶ Storytelling", use_container_width=True, key="btn_explore_storytelling"):
+        if st.button("Storytelling", use_container_width=True):
             st.session_state.page = "Storytelling"
             st.rerun()
+
     with col4:
-        if st.button("▶ Contato", use_container_width=True, key="btn_explore_contato"):
+        if st.button("Contato", use_container_width=True):
             st.session_state.page = "Contato"
             st.rerun()
 
 def show_about():
     st.markdown("# <span class='icon-neon'>◆</span> Sobre Mim", unsafe_allow_html=True)
-    st.markdown("Trajetória profissional e competências técnicas")
+    st.write("""
+Sou estudante de Ciência de Dados e Inteligência Artificial focado em análise de dados,
+machine learning e visualização. Tenho experiência com Python, SQL e ferramentas de BI
+para transformar dados em insights.
+""")
     st.markdown("---")
     
     st.markdown("""
-    <div class='hud-card'>
-        <h3 style='color: #10B981;'>⬥ Formação Acadêmica</h3>
-        <p><strong>Graduação:</strong> Análise de Dados / Ciência de Dados</p>
-        <p><strong>Instituição:</strong> [Sua Universidade]</p>
-        <p><strong>Período:</strong> [Ano de Início] - [Ano de Conclusão]</p>
-        <p><strong>Destaque:</strong> GPA 3.8/4.0 | Bolsista de Excelência</p>
+    <div class="hud-card">
+
+    <h3 style="color:#10B981;">⬥ Formação Acadêmica</h3>
+
+    <div class="education-container">
+
+    <div class="edu-card">
+
+    <h4>🎓 Graduação</h4>
+
+    <p><strong>Curso:</strong> Análise e Desenvolvimento de Sistemas</p>
+    <p><strong>Instituição:</strong> UNICID</p>
+    <p><strong>Período:</strong> 2023 - 2025</p>
+
+    <div class="edu-tags">
+    <span>Python</span>
+    <span>SQL</span>
+    <span>Power BI</span>
+    </div>
+
+    </div>
+
+    <div class="edu-card">
+
+    <h4>📚 Pós-graduação</h4>
+
+    <p><strong>Curso:</strong> Ciência de Dados e IA</p>
+    <p><strong>Instituição:</strong> UNINTER</p>
+    <p><strong>Conclusão:</strong> 06/2026</p>
+
+    <div class="edu-tags">
+    <span>Machine Learning</span>
+    <span>Estatística</span>
+    <span>Modelagem</span>
+    </div>
+
+    </div>
+
+    </div>
+
+    <h4 style="margin-top:25px;">Projetos Acadêmicos</h4>
+
+    <ul>
+    <li>Modelo de classificação com RandomForest</li>
+    <li>Dashboard interativo de análise de vendas</li>
+    <li>Análise exploratória de dataset público</li>
+    </ul>
+
     </div>
     """, unsafe_allow_html=True)
     
     st.markdown("""
-    <div class='hud-card'>
-        <h3 style='color: #10B981;'>⬥ Certificações</h3>
+    <div class="hud-card">
+
+    <h3 style="color:#10B981;">⬥ Certificações & Idiomas</h3>
+
+    <div class="badge-container">
+
+    <div class="badge-card">
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" width="60">
+
+    <h4>Google Data Analytics</h4>
+
+    <p>Google | 2025</p>
+    <p>Professional Certificate</p>
+    <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/WZXH5MS66WCB" target="_blank">
+        Ver credencial
+    </a>
+
+    </div>
+
+    <div class="badge-card">
+
+    <h4>🌎 English</h4>
+
+    <p>Basic → Intermediate</p>
+
+    <div class="language-bar">
+    <div class="language-progress"></div>
+    </div>
+
+    </div>
+
+    </div>
+
     </div>
     """, unsafe_allow_html=True)
-    
-    with st.expander("📜 Certificações Profissionais"):
-        st.markdown("""
-        • **Google Data Analytics Professional Certificate** - Google  
-        • **Python for Data Science** - Coursera  
-        • **Advanced SQL for Data Analysis** - DataCamp
-        """)
     
     st.markdown("---")
     
     st.markdown("## Competências Técnicas")
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("""
-        <div class='hud-card'>
-            <h4 style='color: #10B981;'>Linguagens de Programação</h4>
-            • <span class='highlight-neon'>Python</span> — Avançado  
-            • <span class='highlight-neon'>SQL</span> — Avançado  
-            • <span class='highlight-neon'>R</span> — Intermediário  
-            • <span class='highlight-neon'>JavaScript</span> — Básico
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col2:
-        st.markdown("""
-        <div class='hud-card'>
-            <h4 style='color: #10B981;'>Bibliotecas & Frameworks</h4>
-            • <span class='highlight-neon'>Pandas</span> — Avançado  
-            • <span class='highlight-neon'>NumPy</span> — Avançado  
-            • <span class='highlight-neon'>Scikit-learn</span> — Avançado  
-            • <span class='highlight-neon'>Plotly</span> — Avançado
-        </div>
-        """, unsafe_allow_html=True)
-    
-    col3, col4 = st.columns(2)
-    
-    with col3:
-        st.markdown("""
-        <div class='hud-card'>
-            <h4 style='color: #10B981;'>Bancos de Dados</h4>
-            • <span class='highlight-neon'>MySQL</span> — Avançado  
-            • <span class='highlight-neon'>PostgreSQL</span> — Intermediário  
-            • <span class='highlight-neon'>MongoDB</span> — Básico
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col4:
-        st.markdown("""
-        <div class='hud-card'>
-            <h4 style='color: #10B981;'>Ferramentas de BI</h4>
-            • <span class='highlight-neon'>Power BI</span> — Avançado  
-            • <span class='highlight-neon'>Tableau</span> — Intermediário  
-            • <span class='highlight-neon'>Streamlit</span> — Avançado
-        </div>
-        """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="skills-container">
+
+    <div class="skill-category">
+    <h4>Linguagens</h4>
+
+    <span class="skill-badge">Python</span>
+    <span class="skill-badge">SQL</span>
+    <span class="skill-badge">R</span>
+    <span class="skill-badge">JavaScript</span>
+
+    </div>
+
+    <div class="skill-category">
+    <h4>Data Science</h4>
+
+    <span class="skill-badge">Pandas</span>
+    <span class="skill-badge">NumPy</span>
+    <span class="skill-badge">Scikit-learn</span>
+    <span class="skill-badge">Plotly</span>
+
+    </div>
+
+    <div class="skill-category">
+    <h4>Bancos de Dados</h4>
+
+    <span class="skill-badge">MySQL</span>
+    <span class="skill-badge">SQL Server</span>
+
+    </div>
+
+    <div class="skill-category">
+    <h4>BI & Apps</h4>
+
+    <span class="skill-badge">Power BI</span>
+    <span class="skill-badge">Excel/Sheets</span>
+    <span class="skill-badge">Streamlit</span>
+
+    </div>
+
+    </div>
+    """, unsafe_allow_html=True)
 
 def show_projects():
     st.markdown("# <span class='icon-neon'>◆</span> Projetos", unsafe_allow_html=True)
@@ -879,7 +1388,7 @@ def show_contact():
 # Roteamento de Páginas
 if st.session_state.page == "Início":
     show_home()
-elif st.session_state.page == "Sobre":
+elif st.session_state.page == "Sobre mim":
     show_about()
 elif st.session_state.page == "Projetos":
     show_projects()
