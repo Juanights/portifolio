@@ -255,7 +255,7 @@ with st.sidebar:
     import os
     import base64
     
-    perfil_path = "perfil.jpg"
+    perfil_path = "Perfil.png"
     
     if os.path.exists(perfil_path):
         with open(perfil_path, "rb") as img_file:
@@ -284,7 +284,7 @@ with st.sidebar:
         </div>
         """, unsafe_allow_html=True)
     
-    st.markdown("## ⚡ Portfólio")
+    st.markdown("## ⚡ Portfólio - Juan Uchise")
     st.markdown("*Analista de Dados | Ciência de Dados*")
     st.markdown("---")
     
