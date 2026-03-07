@@ -69,34 +69,74 @@ st.markdown("""
         font-size: 0.95rem;
     }
     
-    /* Botões Neon */
-    .stButton > button {
-        background-color: #1A0F2E;
+    /* Botões Neon - Sidebar */
+    [data-testid="stSidebar"] .stButton > button {
+        background-color: rgba(16,185,129,0.05) !important;
+    color: #10B981 !important;
+
+    border-left: 2px solid #10B981 !important;
+
+    text-shadow:
+        0 0 5px #10B981,
+        0 0 10px #10B981,
+        0 0 20px #10B981;
+
+    box-shadow:
+        inset 0 0 10px rgba(16,185,129,0.25),
+        0 0 10px rgba(16,185,129,0.3);
+
+    transform: translateX(3px);
+
+    transition: all 0.25s ease;
+    }
+    
+    [data-testid="stSidebar"] .stButton > button:hover {
+        background-color: transparent;
         color: #10B981;
-        border: 2px solid #10B981;
+        border: none;
+        box-shadow: none;
+        text-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+        transform: none;
+    }
+    
+    [data-testid="stSidebar"] .stButton > button:focus {
+        background-color: transparent;
+        color: #10B981;
+        border: none;
+        box-shadow: none;
+        text-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+    }
+    
+    /* Botões Neon - Conteúdo Principal */
+    .main .stButton > button {
+        background-color: transparent;
+        color: #10B981;
+        border: 1px solid rgba(16, 185, 129, 0.3);
         border-radius: 4px;
         font-weight: 600;
         font-size: 0.9rem;
         padding: 0.7rem 1.5rem;
         transition: all 0.3s ease;
-        box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        box-shadow: none;
     }
     
-    .stButton > button:hover {
-        background-color: #10B981;
-        color: #0F0718;
-        box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
-        transform: translateY(-2px);
+    .main .stButton > button:hover {
+        background-color: rgba(16, 185, 129, 0.1);
+        color: #10B981;
+        border: 1px solid #10B981;
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+        text-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+        transform: translateY(-1px);
     }
     
     /* HUD Card */
     .hud-card {
         background: linear-gradient(135deg, #1A0F2E 0%, #0F0718 100%);
-        border: 1px solid #10B981;
+        border: 1px solid rgba(16, 185, 129, 0.25);
         border-radius: 4px;
         padding: 1.5rem;
         margin: 1.5rem 0;
-        box-shadow: 0 0 15px rgba(16, 185, 129, 0.2), inset 0 0 15px rgba(16, 185, 129, 0.05);
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.1);
         position: relative;
     }
     
@@ -121,7 +161,7 @@ st.markdown("""
     /* Sidebar */
     [data-testid="stSidebar"] {
         background-color: #0F0718;
-        border-right: 1px solid #10B981;
+        border-right: 1px solid rgba(16, 185, 129, 0.2);
     }
     
     [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
@@ -141,10 +181,10 @@ st.markdown("""
     /* Metric */
     .stMetric {
         background: linear-gradient(135deg, #1A0F2E 0%, #0F0718 100%);
-        border: 1px solid #10B981;
+        border: 1px solid rgba(16, 185, 129, 0.25);
         border-radius: 4px;
         padding: 1rem;
-        box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+        box-shadow: 0 0 5px rgba(16, 185, 129, 0.1);
     }
     
     [data-testid="stMetricLabel"] {
@@ -158,7 +198,7 @@ st.markdown("""
     
     /* Expandable */
     [data-testid="stExpander"] {
-        border: 1px solid #10B981;
+        border: 1px solid rgba(16, 185, 129, 0.25);
         border-radius: 4px;
         background-color: #1A0F2E;
     }
@@ -173,8 +213,7 @@ st.markdown("""
     [data-testid="stTextArea"] textarea {
         background-color: #1A0F2E;
         color: #E0E7FF;
-        border-color: #10B981;
-        border: 1px solid #10B981;
+        border: 1px solid rgba(16, 185, 129, 0.25);
     }
     
     [data-testid="stTextInput"] input:focus,
@@ -255,7 +294,7 @@ with st.sidebar:
     import os
     import base64
     
-    perfil_path = "Perfil.png"
+    perfil_path = "perfil.jpg"
     
     if os.path.exists(perfil_path):
         with open(perfil_path, "rb") as img_file:
@@ -284,7 +323,7 @@ with st.sidebar:
         </div>
         """, unsafe_allow_html=True)
     
-    st.markdown("## ⚡ Portfólio")
+    st.markdown("## Portfólio - Juan Uchise")
     st.markdown("*Analista de Dados | Ciência de Dados*")
     st.markdown("---")
     
