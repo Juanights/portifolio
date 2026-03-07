@@ -201,19 +201,19 @@ st.markdown("""
     .nav-icons-container {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-        margin: 1.5rem 0;
-        padding: 1rem 0;
+        gap: 0.5rem;
+        margin: 0.5rem 0;
+        padding: 0;
     }
     
     .nav-icon-btn {
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        padding: 0.75rem 1rem;
+        padding: 0.5rem 0.5rem;
         background-color: transparent;
-        border: 2px solid #334155;
-        border-radius: 4px;
+        border: none;
+        border-radius: 0;
         color: #CBD5E1;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -224,17 +224,17 @@ st.markdown("""
     }
     
     .nav-icon-btn:hover {
-        border-color: #10B981;
+        border: none;
         color: #10B981;
-        box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
     }
     
     .nav-icon-btn.active {
-        background-color: #1A0F2E;
-        border-color: #10B981;
+        background-color: transparent;
+        border: none;
         color: #10B981;
-        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 10px rgba(16, 185, 129, 0.1);
-        text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        text-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
     }
     
     .nav-icon {
@@ -262,29 +262,29 @@ with st.sidebar:
             img_base64 = base64.b64encode(img_file.read()).decode()
         
         st.markdown(f"""
-        <div style='text-align: center; margin-bottom: 1.5rem;'>
+        <div style='text-align: center; margin-bottom: 1rem;'>
             <img src='data:image/jpeg;base64,{img_base64}' 
                  style='width: 150px; height: 150px; border-radius: 50%; 
-                        border: 3px solid #10B981; 
-                        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 20px rgba(16, 185, 129, 0.1);
+                        border: 1px solid #10B981; 
+                        box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
                         object-fit: cover; display: block; margin: 0 auto;'>
         </div>
         """, unsafe_allow_html=True)
     else:
         st.markdown("""
-        <div style='text-align: center; margin-bottom: 1.5rem;'>
+        <div style='text-align: center; margin-bottom: 1rem;'>
             <div style='width: 150px; height: 150px; margin: 0 auto; 
-                        border: 3px solid #10B981; border-radius: 50%; 
+                        border: 1px solid #10B981; border-radius: 50%; 
                         display: flex; align-items: center; justify-content: center; 
                         font-size: 3rem; background: linear-gradient(135deg, #1A0F2E 0%, #0F0718 100%); 
-                        box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 20px rgba(16, 185, 129, 0.1);'>
+                        box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);'>
                 👤
             </div>
             <p style='text-align: center; color: #CBD5E1; font-size: 0.85rem; margin-top: 0.5rem;'><em>Adicione perfil.jpg</em></p>
         </div>
         """, unsafe_allow_html=True)
     
-    st.markdown("## ⚡ Portfólio - Juan Uchise")
+    st.markdown("## ⚡ Portfólio")
     st.markdown("*Analista de Dados | Ciência de Dados*")
     st.markdown("---")
     
