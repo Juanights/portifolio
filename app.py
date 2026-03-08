@@ -7,6 +7,11 @@ from sklearn.datasets import load_iris
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
+import base64
+
+def load_image_base64(path):
+    with open(path, "rb") as img:
+        return base64.b64encode(img.read()).decode()
 
 st.set_page_config(
     page_title="Portfólio | Juan Uchise",
@@ -629,6 +634,100 @@ box-shadow:
 0 0 10px rgba(16,185,129,0.4);
 
 }
+.gallery{
+display:grid !important;
+grid-template-columns: 1fr 1fr !important;
+gap:20px;
+width:100%;
+}
+
+.card{
+position:relative;
+width:50%;
+border-radius:14px;
+overflow:hidden;
+cursor:pointer;
+height: 400px;            
+}
+
+.card img{
+width:100%;
+aspect-ratio:16/9;
+object-fit:cover;
+display:block;
+}
+
+
+.card:hover img{
+transform:scale(1.06);
+}
+
+.overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(15,7,24,0.88);
+opacity:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+transition:0.3s;
+}
+
+.card:hover .overlay{
+opacity:1;
+}
+
+.overlay h3{
+margin-bottom:10px;
+}
+
+.overlay p{
+font-size:14px;
+opacity:0.85;
+}
+
+.tags{
+margin-top:10px;
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.tag{
+border:1px solid rgba(16,185,129,0.5);
+color:#10B981;
+padding:3px 8px;
+font-size:11px;
+border-radius:6px;
+}
+
+.buttons{
+margin-top:12px;
+display:flex;
+gap:10px;
+}
+
+.btn{
+border:1px solid #10B981;
+color:#10B981;
+padding:6px 12px;
+border-radius:6px;
+text-decoration:none;
+font-size:13px;
+}
+
+.btn:hover{
+background:#10B981;
+color:#0F0718;
+}            
+     
 </style>
     """, unsafe_allow_html=True)
 
@@ -1009,175 +1108,74 @@ para transformar dados em insights.
     """, unsafe_allow_html=True)
 
 def show_projects():
-    st.markdown("# <span class='icon-neon'>◆</span> Projetos", unsafe_allow_html=True)
-    st.markdown("Análise técnica de dados e modelagem preditiva")
-    st.markdown("---")
-    
-    st.markdown("## Selecione um projeto:")
-    project = st.selectbox(
-        "Projetos Disponíveis",
-        ["Análise Exploratória (Iris)", "Machine Learning", "Dashboard de Vendas"],
-        label_visibility="collapsed"
-    )
-    
-    if project == "Análise Exploratória (Iris)":
-        st.markdown("""
-        <div class='hud-card'>
-            <h3 style='color: #10B981;'>⬥ Análise Exploratória - Dataset Iris</h3>
-            <p>Análise detalhada do dataset Iris com visualizações interativas.</p>
+    img_vendas = load_image_base64("images/Capa2.png")
+    img_financeiro = load_image_base64("images/Capa2.png")
+    img_clientes = load_image_base64("images/Perfil.png")
+
+    projects = [
+
+    {
+    "title":"Análise de Vendas",
+    "description":"Dashboard de vendas com análise regional e KPI estratégicos.",
+    "image":img_vendas,
+    "tech":["Python","Pandas","Power BI"],
+    "github":"#",
+    "dashboard":"#"
+    },
+
+    {
+    "title":"Dashboard Financeiro",
+    "description":"Visualização financeira com indicadores de receita e lucro.",
+    "image":img_financeiro,
+    "tech":["SQL","Power BI"],
+    "github":"#",
+    "dashboard":"#"
+    },
+
+    {
+    "title":"Análise de Clientes",
+    "description":"Exploração de dados para identificar padrões de comportamento.",
+    "image":img_clientes,
+    "tech":["Python","Pandas","Streamlit"],
+    "github":"#",
+    "dashboard":"#"
+    }
+
+    ]
+    st.markdown("### 🔎 Filtrar por tecnologia")
+
+    techs = ["Todos", "Python", "Pandas", "SQL", "Power BI", "Streamlit"]
+    selected = st.selectbox("Tecnologia", techs)
+
+    # 1. Filtra os projetos
+    filtered_projects = projects
+    if selected != "Todos":
+        filtered_projects = [p for p in projects if selected in p["tech"]]
+
+    # 2. Cria a galeria (TUDO IDENTADO PARA DENTRO DA FUNÇÃO)
+    gallery_html = "<div class='gallery'>"
+
+    for p in filtered_projects:
+        tags = "".join([f"<span class='tag'>{t}</span>" for t in p["tech"]])
+        
+    gallery_html += f"""
+        <div class="card">
+            <img src="data:image/png;base64,{p['image']}">
+            <div class="overlay">
+                <h3>{p['title']}</h3>
+                <p>{p['description']}</p>
+                <div class="tags">{tags}</div>
+                <div class="buttons">
+                    <a class="btn" href="{p['dashboard']}" target="_blank">Dashboard</a>
+                    <a class="btn" href="{p['github']}" target="_blank">Código</a>
+                </div>
+            </div>
         </div>
-        """, unsafe_allow_html=True)
-        
-        tab1, tab2, tab3, tab4 = st.tabs(["Visão Geral", "Distribuições", "Correlações", "Dados"])
-        
-        with tab1:
-            st.markdown("### Estatísticas Descritivas")
-            iris_data = load_iris()
-            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
-            st.dataframe(df.describe(), use_container_width=True)
-        
-        with tab2:
-            st.markdown("### Distribuições de Variáveis")
-            iris_data = load_iris()
-            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
-            
-            col1, col2 = st.columns(2)
-            with col1:
-                fig = px.histogram(df, x="sepal length (cm)", nbins=30, title="Sepal Length")
-                fig.update_layout(
-                    template='plotly_dark',
-                    plot_bgcolor='#1A0F2E',
-                    paper_bgcolor='#0F0718',
-                    font=dict(color='#E0E7FF'),
-                    title_font_color='#10B981'
-                )
-                st.plotly_chart(fig, use_container_width=True)
-            
-            with col2:
-                fig = px.histogram(df, x="petal length (cm)", nbins=30, title="Petal Length")
-                fig.update_layout(
-                    template='plotly_dark',
-                    plot_bgcolor='#1A0F2E',
-                    paper_bgcolor='#0F0718',
-                    font=dict(color='#E0E7FF'),
-                    title_font_color='#10B981'
-                )
-                st.plotly_chart(fig, use_container_width=True)
-        
-        with tab3:
-            st.markdown("### Matriz de Correlações")
-            iris_data = load_iris()
-            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
-            
-            fig = px.imshow(df.corr(), color_continuous_scale='Greens', title="Correlation Matrix")
-            fig.update_layout(
-                template='plotly_dark',
-                plot_bgcolor='#1A0F2E',
-                paper_bgcolor='#0F0718',
-                font=dict(color='#E0E7FF'),
-                title_font_color='#10B981'
-            )
-            st.plotly_chart(fig, use_container_width=True)
-        
-        with tab4:
-            st.markdown("### Dataset Completo")
-            iris_data = load_iris()
-            df = pd.DataFrame(iris_data.data, columns=iris_data.feature_names)
-            st.dataframe(df, use_container_width=True)
-    
-    elif project == "Machine Learning":
-        st.markdown("""
-        <div class='hud-card'>
-            <h3 style='color: #10B981;'>⬥ Modelo de Classificação - Iris</h3>
-            <p>Random Forest para classificação de espécies de flores.</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        iris_data = load_iris()
-        X = iris_data.data
-        y = iris_data.target
-        
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        
-        model = RandomForestClassifier(n_estimators=100, random_state=42)
-        model.fit(X_train, y_train)
-        
-        accuracy = model.score(X_test, y_test)
-        
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("◆ Acurácia", f"{accuracy:.2%}")
-        with col2:
-            st.metric("◆ Amostras Teste", len(X_test))
-        with col3:
-            st.metric("◆ Features", X.shape[1])
-        
-        st.markdown("---")
-        
-        st.markdown("### Importância das Features")
-        feature_importance = pd.DataFrame({
-            'Feature': iris_data.feature_names,
-            'Importance': model.feature_importances_
-        }).sort_values('Importance', ascending=False)
-        
-        fig = px.bar(feature_importance, x='Importance', y='Feature', orientation='h', title="Feature Importance")
-        fig.update_layout(
-            template='plotly_dark',
-            plot_bgcolor='#1A0F2E',
-            paper_bgcolor='#0F0718',
-            font=dict(color='#E0E7FF'),
-            title_font_color='#10B981',
-            marker_color='#10B981'
-        )
-        st.plotly_chart(fig, use_container_width=True)
-    
-    elif project == "Dashboard de Vendas":
-        st.markdown("""
-        <div class='hud-card'>
-            <h3 style='color: #10B981;'>⬥ Dashboard de Vendas</h3>
-            <p>Painel executivo com métricas de vendas e tendências.</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        np.random.seed(42)
-        dates = pd.date_range('2024-01-01', periods=90, freq='D')
-        sales_data = pd.DataFrame({
-            'Data': dates,
-            'Vendas': np.random.randint(5000, 20000, 90),
-            'Clientes': np.random.randint(50, 200, 90)
-        })
-        
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("◆ Total de Vendas", f"R$ {sales_data['Vendas'].sum():,.0f}")
-        with col2:
-            st.metric("◆ Média Diária", f"R$ {sales_data['Vendas'].mean():,.0f}")
-        with col3:
-            st.metric("◆ Total de Clientes", sales_data['Clientes'].sum())
-        
-        st.markdown("---")
-        
-        fig = go.Figure()
-        fig.add_trace(go.Scatter(
-            x=sales_data['Data'],
-            y=sales_data['Vendas'],
-            mode='lines+markers',
-            name='Vendas',
-            line=dict(color='#10B981', width=3),
-            marker=dict(size=6)
-        ))
-        fig.update_layout(
-            title="Tendência de Vendas (90 dias)",
-            xaxis_title="Data",
-            yaxis_title="Vendas (R$)",
-            template='plotly_dark',
-            plot_bgcolor='#1A0F2E',
-            paper_bgcolor='#0F0718',
-            font=dict(color='#E0E7FF'),
-            title_font_color='#10B981',
-            hovermode='x unified'
-        )
-        st.plotly_chart(fig, use_container_width=True)
+        """
+    gallery_html += "</div>"
+
+    # 3. Renderiza
+    st.markdown(gallery_html, unsafe_allow_html=True)
 
 def show_storytelling():
     st.markdown("# <span class='icon-neon'>◆</span> Análise de Impacto de Negócio", unsafe_allow_html=True)
