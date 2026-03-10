@@ -726,8 +726,180 @@ font-size:13px;
 .btn:hover{
 background:#10B981;
 color:#0F0718;
-}            
-     
+}
+
+/* ===== NETFLIX CARD HOVER ===== */
+.netflix-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 16px;
+}
+
+.netflix-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    cursor: pointer;
+    border: 1px solid rgba(16,185,129,0.15);
+    background: #1A0F2E;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.netflix-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 32px rgba(16,185,129,0.25), 0 0 0 1px rgba(16,185,129,0.4);
+    z-index: 10;
+}
+
+.netflix-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.4s ease;
+}
+
+.netflix-card:hover img {
+    filter: brightness(0.25) saturate(0.5);
+}
+
+.netflix-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(15,7,24,0.95) 0%, rgba(15,7,24,0.4) 50%, transparent 100%);
+    transition: background 0.4s ease;
+}
+
+.netflix-card:hover .netflix-overlay {
+    background: rgba(15,7,24,0.0);
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.netflix-title {
+    color: #E0E7FF;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    transition: all 0.4s ease;
+}
+
+.netflix-status {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.netflix-desc {
+    color: #CBD5E1;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin: 0 0 12px 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+}
+
+.netflix-card:hover .netflix-desc {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.netflix-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+}
+
+.netflix-card:hover .netflix-tags {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.netflix-card:hover .netflix-title {
+    color: #10B981;
+    text-shadow: 0 0 12px rgba(16,185,129,0.6);
+}
+
+.netflix-card:hover .netflix-status {
+    opacity: 0;
+}
+
+.netflix-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1A0F2E 0%, #0F0718 50%, #1A0F2E 100%);
+    font-size: 3rem;
+    color: rgba(16,185,129,0.3);
+    letter-spacing: 2px;
+}
+.contact-card{
+background: rgba(255,255,255,0.02);
+border:1px solid rgba(16,185,129,0.2);
+border-radius:14px;
+padding:24px;
+transition:0.3s;
+}
+
+.contact-card:hover{
+border:1px solid #10B981;
+box-shadow:0 0 12px rgba(16,185,129,0.35);
+transform:translateY(-3px);
+}
+
+.contact-buttons{
+display:flex;
+gap:12px;
+margin-top:15px;
+flex-wrap:wrap;
+}
+
+.contact-btn{
+display:flex;
+align-items:center;
+gap:8px;
+border:1px solid #10B981;
+padding:8px 14px;
+border-radius:8px;
+text-decoration:none;
+color:#10B981;
+font-size:14px;
+transition:0.25s;
+}
+
+.contact-btn img{
+width:18px;
+}
+
+.contact-btn:hover{
+background:#10B981;
+color:#0F0718;
+}
+
+.cta-box{
+text-align:center;
+padding:20px;
+margin-bottom:25px;
+}          
+
+
 </style>
     """, unsafe_allow_html=True)
 
@@ -1108,74 +1280,244 @@ para transformar dados em insights.
     """, unsafe_allow_html=True)
 
 def show_projects():
-    img_vendas = load_image_base64("images/Capa2.png")
-    img_financeiro = load_image_base64("images/Capa2.png")
-    img_clientes = load_image_base64("images/Perfil.png")
+    import base64, os
 
+    def get_img_base64(path):
+        """Converte imagem local para base64. Retorna None se não encontrar."""
+        if path and os.path.exists(path):
+            with open(path, "rb") as f:
+                return base64.b64encode(f.read()).decode()
+        return None
+
+    st.markdown("# <span class='icon-neon'>◆</span> Projetos", unsafe_allow_html=True)
+    st.markdown("Portfólio de projetos em Análise de Dados e Ciência de Dados")
+    st.markdown("---")
+
+    # Definição dos projetos
+    # Para adicionar imagem: coloque o arquivo na pasta 'images/' e informe o caminho em 'cover'
     projects = [
-
-    {
-    "title":"Análise de Vendas",
-    "description":"Dashboard de vendas com análise regional e KPI estratégicos.",
-    "image":img_vendas,
-    "tech":["Python","Pandas","Power BI"],
-    "github":"#",
-    "dashboard":"#"
-    },
-
-    {
-    "title":"Dashboard Financeiro",
-    "description":"Visualização financeira com indicadores de receita e lucro.",
-    "image":img_financeiro,
-    "tech":["SQL","Power BI"],
-    "github":"#",
-    "dashboard":"#"
-    },
-
-    {
-    "title":"Análise de Clientes",
-    "description":"Exploração de dados para identificar padrões de comportamento.",
-    "image":img_clientes,
-    "tech":["Python","Pandas","Streamlit"],
-    "github":"#",
-    "dashboard":"#"
-    }
-
+        {
+            "title": "Análise de Vendas",
+            "description": "Dashboard de vendas com análise regional, KPIs estratégicos e visualização de tendências mensais. Identificação de padrões sazonais e oportunidades de crescimento.",
+            "tech": ["Python", "Pandas", "Power BI"],
+            "github": "#",
+            "dashboard": "#",
+            "status": "Concluído",
+            "cover": "images/capa_vendas.png"   # substitua pelo caminho da sua imagem
+        },
+        {
+            "title": "Dashboard Financeiro",
+            "description": "Visualização financeira com indicadores de receita, lucro e margem. Análise de fluxo de caixa e projeções baseadas em séries temporais.",
+            "tech": ["SQL", "Power BI"],
+            "github": "#",
+            "dashboard": "#",
+            "status": "Concluído",
+            "cover": "images/capa_financeiro.png"
+        },
+        {
+            "title": "Análise de Clientes",
+            "description": "Exploração de dados para identificar padrões de comportamento e segmentação de clientes. Modelo de clustering para personalização de ofertas.",
+            "tech": ["Python", "Pandas", "Streamlit"],
+            "github": "#",
+            "dashboard": "#",
+            "status": "Em desenvolvimento",
+            "cover": "images/capa_clientes.png"
+        },
+        {
+            "title": "Modelo Preditivo — Churn",
+            "description": "Modelo de Machine Learning para prever cancelamento de clientes com Random Forest e XGBoost. Acurácia de 87% em validação cruzada.",
+            "tech": ["Python", "Scikit-learn", "Pandas"],
+            "github": "#",
+            "dashboard": "#",
+            "status": "Em desenvolvimento",
+            "cover": "images/capa_churn.png"
+        },
     ]
-    st.markdown("### 🔎 Filtrar por tecnologia")
 
-    techs = ["Todos", "Python", "Pandas", "SQL", "Power BI", "Streamlit"]
-    selected = st.selectbox("Tecnologia", techs)
+    # Filtro por tecnologia
+    all_techs = sorted(set(t for p in projects for t in p["tech"]))
+    techs = ["Todos"] + all_techs
 
-    # 1. Filtra os projetos
-    filtered_projects = projects
-    if selected != "Todos":
-        filtered_projects = [p for p in projects if selected in p["tech"]]
+    col_filter, _ = st.columns([1, 3])
+    with col_filter:
+        selected = st.selectbox("Filtrar por tecnologia", techs, label_visibility="collapsed")
 
-    # 2. Cria a galeria (TUDO IDENTADO PARA DENTRO DA FUNÇÃO)
-    gallery_html = "<div class='gallery'>"
+    filtered_projects = projects if selected == "Todos" else [p for p in projects if selected in p["tech"]]
+
+    st.markdown("")
+
+    # Renderização Netflix-style: grid HTML puro para garantir hover CSS
+    cards_html = "<div class='netflix-grid'>"
 
     for p in filtered_projects:
-        tags = "".join([f"<span class='tag'>{t}</span>" for t in p["tech"]])
-        
-    gallery_html += f"""
-        <div class="card">
-            <img src="data:image/png;base64,{p['image']}">
-            <div class="overlay">
-                <h3>{p['title']}</h3>
-                <p>{p['description']}</p>
-                <div class="tags">{tags}</div>
-                <div class="buttons">
-                    <a class="btn" href="{p['dashboard']}" target="_blank">Dashboard</a>
-                    <a class="btn" href="{p['github']}" target="_blank">Código</a>
+        img_b64 = get_img_base64(p["cover"])
+        status_color = "#10B981" if p["status"] == "Concluído" else "#F59E0B"
+        tags_html = "".join([f"<span class='tag'>{t}</span>" for t in p["tech"]])
+
+        if img_b64:
+            img_tag = f"<img src='data:image/png;base64,{img_b64}' alt='{p['title']}' />"
+        else:
+            # Placeholder estilizado quando não há imagem
+            img_tag = f"<div class='netflix-placeholder'>◆ {p['title'][:2].upper()}</div>"
+
+        cards_html += f"""
+        <div class="netflix-card">
+            {img_tag}
+            <div class="netflix-overlay">
+                <span class="netflix-status" style="color:{status_color}; border:1px solid {status_color};">{p['status']}</span>
+                <p class="netflix-title">◆ {p['title']}</p>
+                <p class="netflix-desc">{p['description']}</p>
+                <div class="netflix-tags">
+                    {tags_html}
+                    <div style="display:flex; gap:8px; margin-top:8px;">
+                        <a href="{p['github']}" target="_blank" class="btn" style="font-size:11px; padding:4px 10px;">Código</a>
+                        <a href="{p['dashboard']}" target="_blank" class="btn" style="font-size:11px; padding:4px 10px;">Dashboard</a>
+                    </div>
                 </div>
             </div>
         </div>
         """
-    gallery_html += "</div>"
 
-    # 3. Renderiza
-    st.markdown(gallery_html, unsafe_allow_html=True)
+    cards_html += "</div>"
+
+    # CSS do efeito Netflix embutido no componente para garantir renderização correta
+    full_html = f"""
+    <style>
+    * {{ box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }}
+    .netflix-grid {{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 4px;
+    }}
+    .netflix-card {{
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        aspect-ratio: 16/9;
+        cursor: pointer;
+        border: 1px solid rgba(16,185,129,0.15);
+        background: #1A0F2E;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }}
+    .netflix-card:hover {{
+        transform: scale(1.03);
+        box-shadow: 0 8px 32px rgba(16,185,129,0.3), 0 0 0 1px rgba(16,185,129,0.5);
+        z-index: 10;
+    }}
+    .netflix-card img {{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: filter 0.4s ease;
+    }}
+    .netflix-card:hover img {{
+        filter: brightness(0.2) saturate(0.4);
+    }}
+    .netflix-overlay {{
+        position: absolute;
+        inset: 0;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        background: linear-gradient(to top, rgba(15,7,24,0.95) 0%, rgba(15,7,24,0.3) 55%, transparent 100%);
+        transition: all 0.4s ease;
+    }}
+    .netflix-card:hover .netflix-overlay {{
+        background: rgba(10,5,18,0.15);
+        justify-content: center;
+    }}
+    .netflix-title {{
+        color: #E0E7FF;
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+        transition: all 0.4s ease;
+    }}
+    .netflix-card:hover .netflix-title {{
+        color: #10B981;
+        text-shadow: 0 0 14px rgba(16,185,129,0.7);
+    }}
+    .netflix-status {{
+        font-size: 0.68rem;
+        padding: 2px 8px;
+        border-radius: 20px;
+        display: inline-block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: opacity 0.3s ease;
+    }}
+    .netflix-card:hover .netflix-status {{
+        opacity: 0;
+    }}
+    .netflix-desc {{
+        color: #CBD5E1;
+        font-size: 0.78rem;
+        line-height: 1.5;
+        margin-bottom: 10px;
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+    }}
+    .netflix-card:hover .netflix-desc {{
+        opacity: 1;
+        transform: translateY(0);
+    }}
+    .netflix-tags {{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+    }}
+    .netflix-card:hover .netflix-tags {{
+        opacity: 1;
+        transform: translateY(0);
+    }}
+    .tag {{
+        border: 1px solid rgba(16,185,129,0.6);
+        color: #10B981;
+        padding: 2px 8px;
+        font-size: 10px;
+        border-radius: 6px;
+        background: rgba(16,185,129,0.08);
+    }}
+    .btn {{
+        border: 1px solid #10B981;
+        color: #10B981;
+        padding: 4px 10px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 11px;
+        transition: all 0.2s ease;
+        background: transparent;
+    }}
+    .btn:hover {{
+        background: #10B981;
+        color: #0F0718;
+    }}
+    .netflix-placeholder {{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #1A0F2E 0%, #0F0718 50%, #1A0F2E 100%);
+        font-size: 2.5rem;
+        color: rgba(16,185,129,0.25);
+        font-weight: 700;
+        letter-spacing: 3px;
+    }}
+    </style>
+    {cards_html}
+    """
+
+    import streamlit.components.v1 as components
+    components.html(full_html, height=len(filtered_projects) * 220 + 60, scrolling=False)
 
 def show_storytelling():
     st.markdown("# <span class='icon-neon'>◆</span> Análise de Impacto de Negócio", unsafe_allow_html=True)
@@ -1341,47 +1683,97 @@ def show_storytelling():
         st.metric("◆ Oportunidade", "+R$ 150k", "Anual")
 
 def show_contact():
+
     st.markdown("# <span class='icon-neon'>◆</span> Contato", unsafe_allow_html=True)
-    st.markdown("Entre em contato para oportunidades e colaborações")
+
+    st.markdown("""
+    <div class='cta-box'>
+
+    ### 🚀 Vamos trabalhar juntos?
+
+    Se você procura alguém para transformar **dados em insights estratégicos**,  
+    ficarei feliz em conversar sobre **projetos ou oportunidades em dados**.
+
+    </div>
+    """, unsafe_allow_html=True)
+
     st.markdown("---")
-    
+
     col1, col2 = st.columns(2)
-    
+
     with col1:
+
         st.markdown("""
-        <div class='hud-card'>
-            <h3 style='color: #10B981;'>⬥ Informações de Contato</h3>
-            <p><strong>Email:</strong> seu.email@example.com</p>
-            <p><strong>LinkedIn:</strong> linkedin.com/in/seu-perfil</p>
-            <p><strong>GitHub:</strong> github.com/seu-usuario</p>
-            <p><strong>Localização:</strong> Brasil</p>
+        <div class='contact-card'>
+
+        <h3 style='color:#10B981;'>📬 Informações</h3>
+
+        <p>📧 seuemail@email.com</p>
+        <p>🌎 Brasil</p>
+
+        <div class='contact-buttons'>
+
+        <a class='contact-btn' href='https://github.com/seuusuario' target='_blank'>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
+        GitHub
+        </a>
+
+        <a class='contact-btn' href='https://linkedin.com/in/seuperfil' target='_blank'>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg">
+        LinkedIn
+        </a>
+
+        <a class='contact-btn' href='LINK_DO_SEU_CV' target='_blank'>
+        📄 Baixar CV
+        </a>
+
+        </div>
+
         </div>
         """, unsafe_allow_html=True)
-    
+
     with col2:
+
         st.markdown("""
-        <div class='hud-card'>
-            <h3 style='color: #10B981;'>⬥ Disponibilidade</h3>
-            <p><strong>Status:</strong> Aberto a oportunidades</p>
-            <p><strong>Modalidade:</strong> Remoto / Híbrido</p>
-            <p><strong>Tempo de Resposta:</strong> 24-48 horas</p>
+        <div class='contact-card'>
+
+        <h3 style='color:#10B981;'>🚀 Disponibilidade</h3>
+
+        <p><strong>Status:</strong> Aberto a oportunidades</p>
+        <p><strong>Modalidade:</strong> Remoto / Híbrido</p>
+        <p><strong>Tempo de resposta:</strong> 24-48 horas</p>
+
         </div>
         """, unsafe_allow_html=True)
-    
+
     st.markdown("---")
-    
-    st.markdown("## Envie uma Mensagem")
-    with st.form("contact_form"):
-        nome = st.text_input("Nome Completo")
-        email = st.text_input("Email")
-        mensagem = st.text_area("Mensagem")
-        submitted = st.form_submit_button("Enviar Mensagem")
-        
-        if submitted:
-            if nome and email and mensagem:
-                st.success("Obrigado pela mensagem. Responderei em breve.")
-            else:
-                st.error("Por favor, preencha todos os campos obrigatórios.")
+
+    st.markdown("### ✉️ Envie uma mensagem")
+
+    st.markdown("""
+        <form action="https://formspree.io/f/xreypjng" method="POST">
+
+            <input type="text" name="name" placeholder="Seu nome" required style="width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #333;">
+
+            <input type="email" name="email" placeholder="Seu email" required style="width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #333;">
+
+            <textarea name="message" placeholder="Digite sua mensagem..." required style="width:100%;padding:10px;height:120px;border-radius:6px;border:1px solid #333;"></textarea>
+
+            <br><br>
+
+            <button type="submit" style="
+            background:#10B981;
+            color:#0F0718;
+            border:none;
+            padding:10px 18px;
+            border-radius:6px;
+            font-weight:bold;
+            cursor:pointer;">
+            Enviar mensagem
+            </button>
+
+        </form>
+""", unsafe_allow_html=True)
 
 # Roteamento de Páginas
 if st.session_state.page == "Início":
