@@ -1305,7 +1305,7 @@ def show_projects():
             "github": "#",
             "dashboard": "#",
             "status": "Concluído",
-            "cover": "images/capa_vendas.png"   # substitua pelo caminho da sua imagem
+            "cover": "images/image.png"   # substitua pelo caminho da sua imagem
         },
         {
             "title": "Dashboard Financeiro",
@@ -1314,7 +1314,7 @@ def show_projects():
             "github": "#",
             "dashboard": "#",
             "status": "Concluído",
-            "cover": "images/capa_financeiro.png"
+            "cover": "images/Capa2.png"
         },
         {
             "title": "Análise de Clientes",
