@@ -8,6 +8,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 import base64
+import requests
+
 
 def load_image_base64(path):
     with open(path, "rb") as img:
@@ -1708,22 +1710,22 @@ def show_contact():
 
         <h3 style='color:#10B981;'>📬 Informações</h3>
 
-        <p>📧 seuemail@email.com</p>
+        <p>📧 juan.uxz@gmail.com</p>
         <p>🌎 Brasil</p>
 
         <div class='contact-buttons'>
 
-        <a class='contact-btn' href='https://github.com/seuusuario' target='_blank'>
+        <a class='contact-btn' href='https://github.com/juanights' target='_blank'>
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
         GitHub
         </a>
 
-        <a class='contact-btn' href='https://linkedin.com/in/seuperfil' target='_blank'>
+        <a class='contact-btn' href='https://www.linkedin.com/in/juan-uchise/' target='_blank'>
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg">
         LinkedIn
         </a>
 
-        <a class='contact-btn' href='LINK_DO_SEU_CV' target='_blank'>
+        <a class='contact-btn' href='https://docs.google.com/document/d/1XtfdFV0CB9yeIDVarnMa-ihDCXUCR-CQ/edit?usp=drive_link&ouid=104338678762938389768&rtpof=true&sd=true' target='_blank'>
         📄 Baixar CV
         </a>
 
@@ -1750,30 +1752,36 @@ def show_contact():
 
     st.markdown("### ✉️ Envie uma mensagem")
 
-    st.markdown("""
-        <form action="https://formspree.io/f/xreypjng" method="POST">
+    with st.form("contact_form", clear_on_submit=True):
 
-            <input type="text" name="name" placeholder="Seu nome" required style="width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #333;">
+        nome = st.text_input("Seu nome")
+        email = st.text_input("Seu email")
+        mensagem = st.text_area("Digite sua mensagem")
 
-            <input type="email" name="email" placeholder="Seu email" required style="width:100%;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #333;">
+        submitted = st.form_submit_button("Enviar mensagem")
 
-            <textarea name="message" placeholder="Digite sua mensagem..." required style="width:100%;padding:10px;height:120px;border-radius:6px;border:1px solid #333;"></textarea>
+        if submitted:
 
-            <br><br>
+            if not nome or not email or not mensagem:
+                st.error("Preencha todos os campos.")
+            else:
 
-            <button type="submit" style="
-            background:#10B981;
-            color:#0F0718;
-            border:none;
-            padding:10px 18px;
-            border-radius:6px;
-            font-weight:bold;
-            cursor:pointer;">
-            Enviar mensagem
-            </button>
+                url = "https://formspree.io/f/xreypjng"
 
-        </form>
-""", unsafe_allow_html=True)
+                data = {
+                    "name": nome,
+                    "email": email,
+                    "message": mensagem
+                }
+
+                response = requests.post(url, data=data)
+
+                if response.status_code == 200:
+                    st.success("✅ Mensagem enviada com sucesso!")
+                else:
+                    st.error("❌ Erro ao enviar mensagem.")
+
+    
 
 # Roteamento de Páginas
 if st.session_state.page == "Início":
